@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Calendar | Queen Victoria{% endblock %}
+
+{% block body_class %}page-calendar{% endblock %}
+
+{% block content %}
+<section class="calendar-section">
+    <div class="calendar-wrapper">
+
+        <h1 class="calendar-title">CALENDARUL DE DESFĂȘURARE</h1>
+
+        <div class="calendar-images">
+            <img src="{% static 'images/5b83e9_782571ad70fa4b8e953096e377fd4306~mv2.avif' %}">
+            <img src="{% static 'images/image_2026-04-01_205049692.avif' %}">
+            <img src="{% static 'images/5b83e9_e7dc99bc90174fbc8ad187a2f877bac4~mv2.avif' %}">
+            <img src="{% static 'images/5b83e9_b4c83950a1ff4829b5951b9e37d2a69e~mv2.avif' %}">
+        </div>
+
+    </div>
+</section>
+{% endblock %}

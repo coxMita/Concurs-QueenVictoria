@@ -27,18 +27,25 @@ body {
     color: var(--color-text);
 }
 
-/* HOME PAGE - fundal alb */
+/* ========================= */
+/* PAGE BACKGROUNDS */
+/* ========================= */
+
+/* HOME */
 .page-home {
     background: white;
 }
 
-/* INFORMATII PAGE - background cu imagine */
-.page-informatii {
+/* INFORMATII + CALENDAR */
+.page-informatii,
+.page-calendar {
     background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
 }
+
+/* ========================= */
 
 img {
     max-width: 100%;
@@ -59,7 +66,10 @@ a {
     padding: var(--section-spacing) 0;
 }
 
-/* Header */
+/* ========================= */
+/* HEADER */
+/* ========================= */
+
 .site-header {
     background: var(--color-surface);
     padding: 1.5rem 0 1rem;
@@ -93,7 +103,10 @@ a {
     color: var(--color-primary);
 }
 
-/* Hero */
+/* ========================= */
+/* HERO */
+/* ========================= */
+
 .hero {
     position: relative;
     overflow: hidden;
@@ -117,7 +130,10 @@ a {
     margin-left: 2rem;
 }
 
-/* About section */
+/* ========================= */
+/* ABOUT */
+/* ========================= */
+
 .about-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -157,7 +173,10 @@ a {
     background: white;
 }
 
-/* Organizer */
+/* ========================= */
+/* ORGANIZER */
+/* ========================= */
+
 .organizer-section {
     text-align: center;
 }
@@ -188,7 +207,55 @@ a {
     text-decoration: underline;
 }
 
-/* Footer */
+/* ========================= */
+/* CALENDAR / INFORMATIONS BOX */
+/* ========================= */
+
+.calendar-section {
+    padding: 3rem 0;
+}
+
+/* containerul gri din mijloc */
+.calendar-wrapper {
+    width: min(100% - 2rem, 900px);
+    margin: 0 auto;
+    background: white;
+    border: 2px solid #e26b5b;
+    padding: 2rem;
+}
+
+/* imaginile una sub alta */
+.calendar-images {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* fiecare imagine */
+.calendar-images img {
+    display: block;
+    margin: 0 auto;   /* 👈 asta le centrează */
+    width: 100%;
+    max-width: 650px;
+
+    background: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.calendar-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    color: #8d2047; /* culoarea ta primary */
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+}
+
+/* ========================= */
+/* FOOTER */
+/* ========================= */
+
 .site-footer {
     background: var(--color-surface);
     padding: 2rem 0;
@@ -220,27 +287,9 @@ a {
     color: var(--color-primary);
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .about-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-background img {
-        height: 420px;
-    }
-
-    .hero-badge {
-        max-width: 240px;
-        margin-left: 1rem;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-}
+/* ========================= */
+/* CONTENT BOX (existing) */
+/* ========================= */
 
 .content-box {
     max-width: 800px;
@@ -263,4 +312,33 @@ a {
 .content-box li {
     color: #2f4f4f;
     line-height: 1.6;
+}
+
+/* ========================= */
+/* RESPONSIVE */
+/* ========================= */
+
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-background img {
+        height: 420px;
+    }
+
+    .hero-badge {
+        max-width: 240px;
+        margin-left: 1rem;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .calendar-wrapper {
+        padding: 1.5rem;
+    }
 }
