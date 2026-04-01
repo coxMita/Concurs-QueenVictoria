@@ -1,0 +1,88 @@
+{% extends "core/base.html" %}
+{% block title %}Surse | Concursul "Queen Victoria"{% endblock %}
+{% block extra_head %}
+<style>
+  .source-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    border-left: 4px solid var(--gold);
+    transition: transform .2s;
+  }
+  .source-card:hover { transform: translateX(4px); }
+  .source-card .src-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: .1rem; }
+  .source-card h3 { font-family:'Playfair Display',serif; color:var(--navy); font-size:1rem; margin-bottom:.3rem; }
+  .source-card p { font-size:.87rem; color:var(--muted); line-height:1.6; }
+  .source-card a { color:var(--navy); font-weight:600; text-decoration:none; font-size:.85rem; }
+  .source-card a:hover { text-decoration:underline; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-section">
+  <h1 class="section-title">SURSE RECOMANDATE</h1>
+  <p style="color:var(--muted); margin-bottom:1.5rem; line-height:1.7;">
+    Mai jos găsiți sursele recomandate pentru pregătirea concursului, atât pentru ciclul gimnazial cât și pentru cel liceal. Materialele acoperă istoria, geografia și cultura Regatului Unit.
+  </p>
+
+  <h2 style="font-family:'Playfair Display',serif; color:var(--navy); font-size:1.15rem; margin-bottom:1rem;">📘 Cărți și manuale</h2>
+
+  <div class="source-card">
+    <span class="src-icon">📖</span>
+    <div>
+      <h3>Manuale de limba engleză (clasele V–XII)</h3>
+      <p>Manualele școlare aprobate de MEC care conțin capitole dedicate culturii și civilizației britanice.</p>
+    </div>
+  </div>
+
+  <div class="source-card">
+    <span class="src-icon">🏰</span>
+    <div>
+      <h3>Istoria Regatului Unit</h3>
+      <p>Materiale despre monarhie, Casa Regală britanică, principalele evenimente istorice de la cucerirea normandă până în prezent.</p>
+    </div>
+  </div>
+
+  <div class="source-card">
+    <span class="src-icon">✍️</span>
+    <div>
+      <h3>Autori britanici reprezentativi</h3>
+      <p>Opere ale autorilor britanici incluși în tematica concursului: William Shakespeare, Charles Dickens, Jane Austen, și alții.</p>
+    </div>
+  </div>
+
+  <h2 style="font-family:'Playfair Display',serif; color:var(--navy); font-size:1.15rem; margin:1.8rem 0 1rem;">🌐 Surse online</h2>
+
+  <div class="source-card">
+    <span class="src-icon">🌍</span>
+    <div>
+      <h3>The Royal Family — site oficial</h3>
+      <p>Informații oficiale despre Casa Regală britanică, istoria monarhiei și evenimentele curente.</p>
+      <a href="https://www.royal.uk" target="_blank" rel="noopener">www.royal.uk ↗</a>
+    </div>
+  </div>
+
+  <div class="source-card">
+    <span class="src-icon">🏛️</span>
+    <div>
+      <h3>Historic Royal Palaces</h3>
+      <p>Informații despre palatele regale britanice, istoria lor și semnificația lor culturală.</p>
+      <a href="https://www.hrp.org.uk" target="_blank" rel="noopener">www.hrp.org.uk ↗</a>
+    </div>
+  </div>
+
+  <div class="source-card">
+    <span class="src-icon">📜</span>
+    <div>
+      <h3>British History Online</h3>
+      <p>Resurse digitale despre istoria Marii Britanii, documente istorice și cronologii.</p>
+      <a href="https://www.british-history.ac.uk" target="_blank" rel="noopener">www.british-history.ac.uk ↗</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

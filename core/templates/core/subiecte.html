@@ -1,0 +1,140 @@
+{% extends "core/base.html" %}
+{% block title %}Model de Subiecte | Concursul "Queen Victoria"{% endblock %}
+{% block extra_head %}
+<style>
+  .subject-level {
+    margin-bottom: 2.5rem;
+  }
+  .level-badge {
+    display: inline-block;
+    background: var(--navy);
+    color: var(--gold);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: .35rem 1.2rem;
+    border-radius: 30px;
+    margin-bottom: 1rem;
+  }
+  .subject-block {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 1.8rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+  }
+  .subject-block .part-num {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .6rem;
+  }
+  .subject-block h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--navy);
+    font-size: 1.05rem;
+    margin-bottom: .6rem;
+  }
+  .subject-block p { font-size: .9rem; color: #444; line-height: 1.75; }
+  .subject-block ul { padding-left: 1.4rem; margin-top: .5rem; }
+  .subject-block li { margin-bottom: .4rem; font-size: .9rem; color: #444; line-height: 1.6; }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    padding: .6rem 1.4rem;
+    border-radius: 4px;
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+    margin-top: 1rem;
+    transition: background .2s;
+  }
+  .download-btn:hover { background: #0e1a35; }
+</style>
+{% endblock %}
+{% block content %}
+<div class="page-section">
+  <h1 class="section-title">MODEL DE SUBIECTE</h1>
+  <p style="color:var(--muted); margin-bottom:2rem; line-height:1.7;">
+    Mai jos găsiți structura și modelele de subiecte pentru ambele cicluri de învățământ. Subiectele reale variază de la o ediție la alta, dar structura rămâne aceeași.
+  </p>
+
+  <!-- GIMNAZIU -->
+  <div class="subject-level">
+    <span class="level-badge">Ciclul Gimnazial — Clasele V–VIII</span>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 1 — Item 1</div>
+      <h3>Fill in the blanks (10 puncte)</h3>
+      <p>Text istoric sau geografic selectat conform tematicii. Candidații vor completa spațiile libere cu cuvintele corecte.</p>
+      <p><em>Exemplu: "Queen Victoria reigned from ____ to ____, and was the ____ of the United Kingdom."</em></p>
+    </div>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 1 — Item 2</div>
+      <h3>Matching — Years and Kings (10 puncte)</h3>
+      <p>Potriviți evenimentele/monarhii cu anii corecți. Ex:</p>
+      <ul>
+        <li>1066 → Norman Conquest / Battle of Hastings</li>
+        <li>1215 → Magna Carta</li>
+        <li>1837 → Queen Victoria's reign begins</li>
+      </ul>
+    </div>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 1 — Item 3</div>
+      <h3>Match the headings to the extracts (5 puncte)</h3>
+      <p>5 titluri de asociat cu 5 texte scurte despre cultură și civilizație britanică.</p>
+    </div>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 2</div>
+      <h3>Writing (25 puncte)</h3>
+      <p>Redactarea unui scurt paragraf (max. 80 de cuvinte) pornind de la o imagine legată de un eveniment din istoria Regatului Unit.</p>
+    </div>
+
+    <a href="#" class="download-btn">📄 Descarcă model subiecte gimnaziu (PDF)</a>
+  </div>
+
+  <hr class="gold-divider">
+
+  <!-- LICEU -->
+  <div class="subject-level">
+    <span class="level-badge">Ciclul Liceal — Clasele IX–XII</span>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 1 — Item 1</div>
+      <h3>Fill in the blanks (10 puncte)</h3>
+      <p>Text istoric/geografic mai complex, selectat conform tematicii pentru liceu. Candidații completează spațiile libere.</p>
+    </div>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 1 — Item 2</div>
+      <h3>Matching — Sentence halves (10 puncte)</h3>
+      <p>Candidații vor trebui să potrivească jumătăți de frază referitoare la evenimente, personalități sau opere din cultura britanică.</p>
+    </div>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 1 — Item 3</div>
+      <h3>Match the headings to the extracts (5 puncte)</h3>
+      <p>5 titluri de asociat cu 5 texte despre cultură și civilizație britanică, nivel avansat.</p>
+    </div>
+
+    <div class="subject-block">
+      <div class="part-num">Partea 2</div>
+      <h3>Writing (25 puncte)</h3>
+      <p>Redactarea unui text (max. 150 de cuvinte) pornind de la o imagine reprezentativă pentru un eveniment istoric din Regatul Unit.</p>
+    </div>
+
+    <a href="#" class="download-btn">📄 Descarcă model subiecte liceu (PDF)</a>
+  </div>
+</div>
+{% endblock %}

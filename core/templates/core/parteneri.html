@@ -1,0 +1,99 @@
+{% extends "core/base.html" %}
+{% block title %}Parteneri | Concursul "Queen Victoria"{% endblock %}
+
+{% block extra_head %}
+<style>
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .partner-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .partner-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(26,39,68,.12); }
+
+  .partner-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .partner-card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--navy);
+    font-size: 1rem;
+    margin-bottom: .4rem;
+  }
+  .partner-card p { font-size: .87rem; color: var(--muted); }
+
+  .organizer-highlight {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .organizer-highlight h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    margin-bottom: .6rem;
+  }
+  .organizer-highlight p { opacity: .8; line-height: 1.7; }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-section">
+  <h1 class="section-title">PARTENERI</h1>
+
+  <div class="organizer-highlight">
+    <h2>Organizator principal</h2>
+    <p>Clubul de Cultură și Civilizație Britanică „Queen Elizabeth II"</p>
+    <p style="margin-top:.6rem; font-size:.85rem;">în colaborare cu Inspectoratele Școlare Județene partenere</p>
+  </div>
+
+  <p style="color:var(--muted); margin-bottom:1.5rem; line-height:1.7;">
+    Concursul se desfășoară cu sprijinul partenerilor din domeniul educațional, cultural și instituțional. Parteneriatul este esențial pentru buna desfășurare a etapelor județene și interjudețene.
+  </p>
+
+  <div class="partners-grid">
+    <div class="partner-card">
+      <div class="partner-icon">🏛️</div>
+      <h3>Inspectoratele Școlare Județene</h3>
+      <p>Asigură organizarea etapei județene, eliberarea diplomelor și aprobările necesare desfășurării concursului în fiecare județ.</p>
+    </div>
+    <div class="partner-card">
+      <div class="partner-icon">🏫</div>
+      <h3>Unități de învățământ</h3>
+      <p>Școlile și liceele partenere găzduiesc etapele locale și județene, asigurând infrastructura necesară concursului.</p>
+    </div>
+    <div class="partner-card">
+      <div class="partner-icon">📚</div>
+      <h3>Profesori coordonatori</h3>
+      <p>Profesorii de limba engleză din unitățile partenere contribuie la elaborarea subiectelor și coordonarea participanților.</p>
+    </div>
+    <div class="partner-card">
+      <div class="partner-icon">🤝</div>
+      <h3>Parteneri instituționali</h3>
+      <p>Instituții culturale și educaționale care sprijină promovarea culturii și civilizației britanice în rândul elevilor români.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:2rem; border-left:4px solid var(--gold); border-radius:6px;">
+    <p>
+      <strong>Deveniți partener!</strong> Dacă doriți să vă alăturați concursului ca partener, vă rugăm să luați legătura cu organizatorii la adresa
+      <a href="mailto:daniel.leotescu@cnc.ro" style="color:var(--navy); font-weight:600;">daniel.leotescu@cnc.ro</a>.
+    </p>
+  </div>
+</div>
+{% endblock %}

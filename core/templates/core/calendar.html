@@ -1,0 +1,167 @@
+{% extends "core/base.html" %}
+{% block title %}Calendar | Concursul "Queen Victoria"{% endblock %}
+
+{% block extra_head %}
+<style>
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .cal-event {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    transition: transform .2s;
+  }
+  .cal-event:hover { transform: translateY(-3px); }
+
+  .cal-date {
+    background: var(--navy);
+    color: var(--white);
+    min-width: 72px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem .5rem;
+  }
+  .cal-date .month {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .cal-date .day {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .cal-date .year {
+    font-size: .72rem;
+    opacity: .7;
+    margin-top: .2rem;
+  }
+
+  .cal-body {
+    padding: 1rem 1.2rem;
+    flex: 1;
+  }
+  .cal-body .stage-tag {
+    display: inline-block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    background: rgba(201,168,76,.15);
+    color: var(--navy);
+    padding: .2rem .7rem;
+    border-radius: 20px;
+    margin-bottom: .5rem;
+  }
+  .cal-body h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--navy);
+    font-size: 1rem;
+    margin-bottom: .3rem;
+  }
+  .cal-body p { font-size: .87rem; color: var(--muted); line-height: 1.5; }
+
+  .calendar-note {
+    background: var(--navy);
+    color: rgba(255,255,255,.8);
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-top: 2rem;
+    font-size: .9rem;
+    line-height: 1.7;
+  }
+  .calendar-note strong { color: var(--gold); }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-section">
+  <h1 class="section-title">CALENDARUL DE DESFĂȘURARE</h1>
+  <p style="color:var(--muted); margin-bottom:1.5rem;">
+    Calendar orientativ pentru ediția 2025–2026. Datele exacte pentru etapa județeană și interjudețeană vor fi comunicate ulterior de coordonatorii județeni.
+  </p>
+
+  <div class="calendar-grid">
+    <div class="cal-event">
+      <div class="cal-date">
+        <span class="month">Ian</span>
+        <span class="day">—</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="cal-body">
+        <span class="stage-tag">Etapa pe școală</span>
+        <h3>Etapa pe școală</h3>
+        <p>Organizată la nivelul fiecărei unități de învățământ, conform prevederilor OMEC 6727/25.11.2025.</p>
+      </div>
+    </div>
+
+    <div class="cal-event">
+      <div class="cal-date">
+        <span class="month">Feb</span>
+        <span class="day">—</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="cal-body">
+        <span class="stage-tag">Etapa locală</span>
+        <h3>Etapa locală</h3>
+        <p>Organizată la nivelul fiecărei localități, cu transmiterea rezultatelor în Drive-ul concursului.</p>
+      </div>
+    </div>
+
+    <div class="cal-event">
+      <div class="cal-date">
+        <span class="month">Mar</span>
+        <span class="day">—</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="cal-body">
+        <span class="stage-tag">Etapa județeană</span>
+        <h3>Etapa județeană</h3>
+        <p>Durata: 60 min (gimnaziu) / 90 min (liceu). Data exactă stabilită de coordonatorul județean.</p>
+      </div>
+    </div>
+
+    <div class="cal-event">
+      <div class="cal-date">
+        <span class="month">Apr</span>
+        <span class="day">—</span>
+        <span class="year">2026</span>
+      </div>
+      <div class="cal-body">
+        <span class="stage-tag">Etapa interjudețeană</span>
+        <h3>Etapa interjudețeană</h3>
+        <p>Pe regiuni, cu subiecte unice, la aceeași oră în toate centrele. Lucrările vor fi scanate și încărcate online.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="calendar-note">
+    <strong>📌 Notă:</strong> Calendarul de mai sus este orientativ. Datele precise pentru fiecare etapă vor fi comunicate prin coordonatorii județeni și prin Drive-ul concursului. Vă rugăm să urmăriți actualizările periodice.
+  </div>
+
+  <!-- Calendar images from original site -->
+  <div style="margin-top:2.5rem; display:grid; gap:1.5rem;">
+    <img src="https://static.wixstatic.com/media/5b83e9_782571ad70fa4b8e953096e377fd4306~mv2.png/v1/fill/w_578,h_511,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/5b83e9_782571ad70fa4b8e953096e377fd4306~mv2.png"
+      alt="Calendar etape" style="max-width:100%; border-radius:8px; box-shadow:var(--shadow);">
+    <img src="https://static.wixstatic.com/media/5b83e9_0161609bd7c5492b83eb09524fed0ca3~mv2.png/v1/fill/w_600,h_440,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image_2026-04-01_205049692.png"
+      alt="Calendar 2026" style="max-width:100%; border-radius:8px; box-shadow:var(--shadow);">
+    <img src="https://static.wixstatic.com/media/5b83e9_e7dc99bc90174fbc8ad187a2f877bac4~mv2.png/v1/fill/w_600,h_440,al_c,q_85,enc_avif,quality_auto/5b83e9_e7dc99bc90174fbc8ad187a2f877bac4~mv2.png"
+      alt="Calendar detalii" style="max-width:100%; border-radius:8px; box-shadow:var(--shadow);">
+    <img src="https://static.wixstatic.com/media/5b83e9_b4c83950a1ff4829b5951b9e37d2a69e~mv2.png/v1/fill/w_600,h_223,al_c,q_85,enc_avif,quality_auto/5b83e9_b4c83950a1ff4829b5951b9e37d2a69e~mv2.png"
+      alt="Calendar suplimentar" style="max-width:100%; border-radius:8px; box-shadow:var(--shadow);">
+  </div>
+</div>
+{% endblock %}

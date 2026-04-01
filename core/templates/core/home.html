@@ -1,0 +1,312 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Concurs De Cultura Si Civilizatie | Concursul "Queen Victoria"{% endblock %}
+
+{% block extra_head %}
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Questrial&family=Poppins:wght@400;600;700&display=swap');
+
+  body {
+    font-family: 'Questrial', sans-serif;
+    background: #fff;
+  }
+
+  /* ── NAVBAR: gold background, crimson title, navy links ── */
+  .navbar { background: #bfa750 !important; }
+  .navbar-brand {
+    font-family: 'Poppins', sans-serif;
+    color: #85223E !important;
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .nav-links a {
+    color: #004e69 !important;
+    font-family: 'Questrial', sans-serif;
+    font-size: .88rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .nav-links a:hover, .nav-links a.active {
+    color: #85223E !important;
+    background: rgba(133,34,62,.1) !important;
+  }
+
+  /* ── SECTION 1: Hero strip ── */
+  .s1 {
+    position: relative;
+    width: 100%;
+    background: #e8e6e6;
+    overflow: hidden;
+  }
+
+  .s1-bg {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  /* Two overlapping concurs logo circles — top-left quadrant */
+  .s1-logo-wrap {
+    position: absolute;
+    top: 50px;
+    left: max(10px, calc(50% - 480px));
+    width: 260px;
+    height: 280px;
+    z-index: 3;
+  }
+  .s1-logo-back {
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    opacity: .45;
+  }
+  .s1-logo-front {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 220px;
+    height: 220px;
+    object-fit: contain;
+  }
+
+  /* Queen character — bottom-right of strip */
+  .s1-queen {
+    position: absolute;
+    right: max(10px, calc(50% - 480px));
+    bottom: 0;
+    width: 260px;
+    z-index: 4;
+    pointer-events: none;
+  }
+  .s1-queen img {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    object-position: bottom;
+  }
+
+  /* ── SECTION 2: About (Despre concurs) ── */
+  .s2 {
+    background: #fff;
+    width: 100%;
+  }
+  .s2-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 60px 20px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+  }
+  @media (max-width: 720px) {
+    .s2-inner { grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  .s2-text h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #85223E;
+    font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+    line-height: 1.25;
+    margin-bottom: 24px;
+    text-align: center;
+    letter-spacing: normal;
+  }
+  .s2-text p {
+    font-family: 'Questrial', sans-serif;
+    color: #0C385B;
+    font-size: clamp(.95rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+    text-align: justify;
+    margin-bottom: 14px;
+  }
+  .btn-rm {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 28px;
+    border: 2px solid #004e30;
+    background: transparent;
+    color: #004e30;
+    font-family: 'Questrial', sans-serif;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background .22s, color .22s;
+  }
+  .btn-rm:hover { background: #004e30; color: #fff; }
+
+  .s2-photo {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+  }
+  .s2-photo img {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* ── SECTION 3: Organizer + Approval ── */
+  .s3 {
+    background: #fff;
+    padding: 20px 20px 60px;
+    text-align: center;
+  }
+  .s3 h2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #85223E;
+    font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+    line-height: 1.35;
+    margin-bottom: 6px;
+    letter-spacing: normal;
+  }
+  .s3 .and-line {
+    font-family: 'Poppins', sans-serif;
+    color: #85223E;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 4px 0;
+  }
+  .s3-logo {
+    display: block;
+    width: 100px;
+    height: auto;
+    margin: 20px auto 10px;
+    object-fit: contain;
+  }
+  .s3-approval {
+    max-width: 860px;
+    margin: 24px auto 0;
+    font-family: 'Questrial', sans-serif;
+    color: #414141;
+    font-size: clamp(.95rem, 1.4vw, 1.1rem);
+    line-height: 1.9em;
+    text-align: center;
+  }
+  .s3-approval a {
+    color: #8B0000;
+    text-decoration: underline;
+  }
+
+  /* ── FOOTER: gold background to match original ── */
+  footer {
+    background: #bfa750 !important;
+    border-top: none !important;
+    color: #414141 !important;
+  }
+  footer strong, footer a { color: #85223E !important; }
+  footer .footer-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #85223E;
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .s1-bg { height: 360px; }
+    .s1-logo-wrap { top: 30px; width: 200px; height: 220px; }
+    .s1-logo-front { width: 170px; height: 170px; }
+    .s1-logo-back { width: 190px; height: 190px; }
+    .s1-queen { width: 180px; }
+  }
+  @media (max-width: 550px) {
+    .s1-queen { display: none; }
+    .s1-logo-wrap {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .s1-bg { height: 280px; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════
+     S1 — Hero: bg photo + logos + queen
+     ═══════════════════════════════════════ -->
+<section class="s1">
+  <img class="s1-bg"
+    src="{% static 'images/qv1.avif' %}"
+    alt="Concursul Queen Victoria" fetchpriority="high">
+
+  <!-- Double concurs circle logo (left) -->
+  <div class="s1-logo-wrap">
+    <img class="s1-logo-back"
+      src="https://static.wixstatic.com/media/5b83e9_5e90576ca060471f87a7e867e16cd48c~mv2.png/v1/fill/w_467,h_468,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/concurs.png"
+      alt="">
+    <img class="s1-logo-front"
+      src="https://static.wixstatic.com/media/5b83e9_5e90576ca060471f87a7e867e16cd48c~mv2.png/v1/fill/w_424,h_424,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/concurs.png"
+      alt="Logo Concurs Queen Victoria">
+  </div>
+
+  <!-- Queen character (right, bottom-anchored) -->
+  <div class="s1-queen">
+    <img src="{% static 'images/queen_img.avif' %}"
+      alt="Queen Victoria">
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S2 — Despre concurs
+     ═══════════════════════════════════════ -->
+<section class="s2">
+  <div class="s2-inner">
+
+    <div class="s2-text">
+      <h2>Despre concurs</h2>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;Concursul național de cultură și civilizație britanică „Queen Victoria" a fost gândit&nbsp; pentru a veni în sprijinul elevilor din ciclul gimnazial și ciclul liceal care doresc să-și aprofundeze cunoștințele de cultură și civilizație britanică răspunzând, în același timp, nevoii de competiție în limba engleză.
+      </p>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;Scopul principal al concursului este acela de a le permite elevilor să își utilizeze cunoștințele de cultură și civilizație britanică și, în același timp, să se familiarizeze cu principalele evenimente istorice, cu membrii caselor regale, care au contribuit la formarea regatului, precum și cu o serie de autori britanici reprezentativi pentru cultura britanică.
+      </p>
+      <p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elevii vor avea ocazia să își testeze cunoștințele pe care le-au dobândit folosind o metodă modernă de evaluare, precum și să utilizeze limba engleză în diferite contexte. De asemenea, participanții vor beneficia de un mediu competitiv și de șanse egale pentru a-și putea dovedi cunoștințele și perspicacitatea.&nbsp;&nbsp;&nbsp;
+      </p>
+      <a href="/informatii" class="btn-rm">Read More</a>
+    </div>
+
+    <div class="s2-photo">
+      <img src="{% static 'images/qv3.avif' %}" alt="qv3">
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     S3 — Organizat de + Approval
+     ═══════════════════════════════════════ -->
+<section class="s3">
+  <h2>Concursul este organizat de</h2>
+  <h2>Clubul de Cultură și Civilizație Britanică „Queen Elizabeth II"</h2>
+  <p class="and-line">și</p>
+  <h2>partenerii.</h2>
+
+  <img class="s3-logo"
+    src="{% static 'images/logo_club.avif' %}"
+    alt="Club Queen Elizabeth II logo">
+
+  <p class="s3-approval">
+    Concursul este aprobat prin OME nr. 3.153/28.01.2026,&nbsp;
+    <a href="https://www.edu.ro/sites/default/files/_fi%C8%99iere/Minister/2026/olimpiade_concursuri/liste_competitii/05_Lista%20_Concursuri_fara_finantare_MEC_2026.pdf"
+       target="_blank" rel="noopener noreferrer">Anexa 5</a>,
+    la poziția C5.
+  </p>
+</section>
+
+{% endblock %}
