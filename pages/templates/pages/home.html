@@ -2,8 +2,10 @@
 
 {% block title %}Home | Queen Victoria{% endblock %}
 
+{% block body_class %}page-home{% endblock %}
+
 {% block content %}
-    {% include "components/sections/hero.html" %}
-    {% include "components/sections/about_contest.html" %}
-    {% include "components/sections/organizer.html" %}
+    {% include "components/sections/home/hero.html" %}
+    {% include "components/sections/home/about_contest.html" %}
+    {% include "components/sections/home/organizer.html" %}
 {% endblock %}

@@ -2,11 +2,13 @@
 
 {% block title %}Informatii | Queen Victoria{% endblock %}
 
+{% block body_class %}page-informatii{% endblock %}
+
 {% block content %}
-<section class="section">
-    <div class="container">
-        <h1>Informatii</h1>
-        <p>Aceasta pagină va conține informațiile detaliate despre concurs.</p>
-    </div>
-</section>
+    {% include "components/sections/informatii/informatii_intro.html" %}
+    {% include "components/sections/informatii/informatii_structura.html" %}
+    {% include "components/sections/informatii/informatii_etape.html" %}
+    {% include "components/sections/informatii/informatii_calificare.html" %}
+    {% include "components/sections/informatii/informatii_contestatii.html" %}
+    {% include "components/sections/informatii/informatii_premiere.html" %}
 {% endblock %}

@@ -23,10 +23,21 @@ html {
 
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--color-bg);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--color-text);
-    line-height: 1.6;
+}
+
+/* HOME PAGE - fundal alb */
+.page-home {
+    background: white;
+}
+
+/* INFORMATII PAGE - background cu imagine */
+.page-informatii {
+    background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 img {
@@ -229,4 +240,27 @@ a {
         align-items: center;
         text-align: center;
     }
+}
+
+.content-box {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #f5f5f5;
+    padding: 40px;
+    border: 2px solid #c45a5a;
+    border-radius: 5px;
+}
+
+.content-box h1, 
+.content-box h2, 
+.content-box h3 {
+    text-align: center;
+    color: #7a2c2c;
+    margin-bottom: 20px;
+}
+
+.content-box p, 
+.content-box li {
+    color: #2f4f4f;
+    line-height: 1.6;
 }
