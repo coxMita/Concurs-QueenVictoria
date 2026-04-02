@@ -42,4 +42,4 @@ def regulament(request):
 
 
 def galerie(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Galerie"})
+    return render(request, "pages/galerie.html")

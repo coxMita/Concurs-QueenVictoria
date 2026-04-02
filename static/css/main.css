@@ -42,7 +42,8 @@ body {
 .page-parteneri,
 .page-subiecte,
 .page-tematica,
-.page-regulament {
+.page-regulament,
+.page-galerie {
     background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
     background-size: cover;
     background-position: center;
@@ -493,6 +494,42 @@ a {
 }
 
 /* ========================= */
+/* GALERIE */
+/* ========================= */
+
+.galerie-section {
+    padding: 2.5rem 0 1.5rem;
+}
+
+.galerie-wrapper {
+    width: min(100% - 2rem, 1180px);
+    margin: 0 auto;
+}
+
+.galerie-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #8d2047;
+    margin: 0 0 1.5rem;
+    letter-spacing: 1px;
+}
+
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.galerie-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border: 2px solid rgba(141, 32, 71, 0.55);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* ========================= */
 /* FOOTER */
 /* ========================= */
 
@@ -607,5 +644,15 @@ a {
     .regulament-pdf-viewer {
         height: 70vh;
         min-height: 500px;
+    }
+
+    .galerie-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .galerie-grid {
+        grid-template-columns: 1fr;
     }
 }
