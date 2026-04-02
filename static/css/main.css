@@ -39,7 +39,8 @@ body {
 /* INFORMATII + CALENDAR */
 .page-informatii,
 .page-calendar,
-.page-parteneri {
+.page-parteneri,
+.page-subiecte {
     background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
     background-size: cover;
     background-position: center;
@@ -275,6 +276,83 @@ a {
 }
 
 /* ========================= */
+/* SUBIECTE */
+/* ========================= */
+
+.subiecte-section {
+    padding: 2.5rem 0 1rem;
+}
+
+.subiecte-wrapper {
+    width: min(100% - 2rem, 900px);
+    margin: 0 auto;
+}
+
+.subiecte-content-box {
+    background: white;
+    border: 2px solid #e26b5b;
+    padding: 1.75rem 2rem;
+}
+
+.subiecte-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #8d2047;
+    margin: 0 0 1rem;
+    letter-spacing: 1px;
+}
+
+.subiecte-content-box h2 {
+    text-align: center;
+    color: #8d2047;
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.5rem;
+}
+
+.subiecte-content-box p,
+.subiecte-content-box li {
+    color: #2f4f4f;
+    line-height: 1.6;
+    font-size: 1.2rem;
+}
+
+.subiecte-content-box ol {
+    margin: 0.4rem 0 0;
+    padding-left: 1.4rem;
+}
+
+.subiecte-download-section {
+    padding: 0 0 2rem;
+    text-align: center;
+}
+
+.subiecte-download-text {
+    margin: 0 auto 1.25rem;
+    width: min(100%, 900px);
+    background: white;
+    border: 2px solid #e26b5b;
+    color: #2f4f4f;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    padding: 0.7rem 1rem;
+}
+
+.subiecte-download-button {
+    display: inline-block;
+    background: #6f2b2b;
+    color: #ffffff;
+    letter-spacing: 1.6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.55rem 1.6rem;
+    transition: var(--transition);
+}
+
+.subiecte-download-button:hover {
+    background: #8d2047;
+}
+
+/* ========================= */
 /* FOOTER */
 /* ========================= */
 
@@ -362,5 +440,14 @@ a {
 
     .calendar-wrapper {
         padding: 1.5rem;
+    }
+
+    .subiecte-content-box {
+        padding: 1.3rem 1.1rem;
+    }
+
+    .subiecte-content-box p,
+    .subiecte-content-box li {
+        font-size: 1.05rem;
     }
 }

@@ -22,7 +22,7 @@ def surse(request):
 
 
 def subiecte(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Subiecte"})
+    return render(request, "pages/subiecte.html")
 
 
 def rezultate(request):
