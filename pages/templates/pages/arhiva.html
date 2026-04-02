@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Arhiva | Queen Victoria{% endblock %}
+
+{% block body_class %}page-arhiva{% endblock %}
+
+{% block content %}
+<section class="arhiva-section">
+    <div class="arhiva-wrapper">
+        <div class="arhiva-content-box">
+            <div class="arhiva-header">
+                <div class="arhiva-folder-icon" aria-hidden="true">
+                    <span></span>
+                </div>
+                <div>
+                    <h1 class="arhiva-title">Arhiva Subiecte &amp; Bareme</h1>
+                    <p class="arhiva-description">
+                        Selecteaza un folder pentru a vedea documentele disponibile si descarca PDF-urile printr-un click.
+                    </p>
+                </div>
+            </div>
+
+            {% if folders %}
+                <div class="arhiva-accordion">
+                    {% for folder in folders %}
+                        <details class="arhiva-folder" {% if forloop.first %}open{% endif %}>
+                            <summary class="arhiva-folder-summary">
+                                <span class="arhiva-folder-summary-left">
+                                    <span class="arhiva-folder-row-icon" aria-hidden="true"></span>
+                                    <span class="arhiva-folder-name">{{ folder.name }}</span>
+                                </span>
+                                <span class="arhiva-folder-meta">
+                                    {{ folder.documents.count }} PDF{{ folder.documents.count|pluralize:",-uri" }}
+                                </span>
+                            </summary>
+
+                            <div class="arhiva-documents">
+                                {% if folder.documents.all %}
+                                    {% for document in folder.documents.all %}
+                                        <a class="arhiva-document" href="{{ document.file.url }}" download>
+                                            <span class="arhiva-document-main">
+                                                <span class="arhiva-pdf-badge">PDF</span>
+                                                <span class="arhiva-document-title">{{ document.display_title }}</span>
+                                            </span>
+                                            <span class="arhiva-document-action">Descarca</span>
+                                        </a>
+                                    {% endfor %}
+                                {% else %}
+                                    <p class="arhiva-empty-folder">Nu exista inca documente in acest folder.</p>
+                                {% endif %}
+                            </div>
+                        </details>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="arhiva-empty-state">
+                    Nu exista foldere in arhiva momentan. Le poti adauga din panoul de administrare.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
