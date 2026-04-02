@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import ArchiveFolder
+
 
 def home(request):
     return render(request, "pages/home.html")
@@ -30,7 +32,8 @@ def rezultate(request):
 
 
 def arhiva(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Arhiva"})
+    folders = ArchiveFolder.objects.prefetch_related("documents").all()
+    return render(request, "pages/arhiva.html", {"folders": folders})
 
 
 def tematica(request):

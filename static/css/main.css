@@ -25,6 +25,13 @@ body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 /* ========================= */
@@ -41,6 +48,7 @@ body {
 .page-calendar,
 .page-parteneri,
 .page-subiecte,
+.page-arhiva,
 .page-tematica,
 .page-regulament,
 .page-galerie {
@@ -530,13 +538,192 @@ a {
 }
 
 /* ========================= */
+/* ARHIVA */
+/* ========================= */
+
+.arhiva-section {
+    padding: 2.5rem 0 1.5rem;
+}
+
+.arhiva-wrapper {
+    width: min(100% - 2rem, 980px);
+    margin: 0 auto;
+}
+
+.arhiva-content-box {
+    background: rgba(255, 255, 255, 0.94);
+    border: 2px solid #e26b5b;
+    padding: 1.5rem;
+}
+
+.arhiva-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.arhiva-folder-icon,
+.arhiva-folder-row-icon {
+    position: relative;
+    flex: 0 0 auto;
+    background: linear-gradient(180deg, #e8be61 0%, #d79b3d 100%);
+    border: 1px solid #8d2047;
+    border-radius: 8px;
+}
+
+.arhiva-folder-icon {
+    width: 58px;
+    height: 42px;
+}
+
+.arhiva-folder-icon span,
+.arhiva-folder-row-icon::before {
+    position: absolute;
+    content: "";
+    top: -7px;
+    left: 7px;
+    width: 22px;
+    height: 12px;
+    background: #f1d566;
+    border: 1px solid #8d2047;
+    border-bottom: 0;
+    border-radius: 6px 6px 0 0;
+}
+
+.arhiva-folder-row-icon {
+    width: 28px;
+    height: 22px;
+}
+
+.arhiva-folder-row-icon::before {
+    top: -5px;
+    left: 4px;
+    width: 12px;
+    height: 7px;
+}
+
+.arhiva-title {
+    margin: 0 0 0.35rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #8d2047;
+    letter-spacing: 1px;
+}
+
+.arhiva-description,
+.arhiva-empty-state,
+.arhiva-empty-folder {
+    margin: 0;
+    color: #2f4f4f;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.arhiva-accordion {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.arhiva-folder {
+    border: 1px solid rgba(125, 150, 163, 0.45);
+    background: #fffdf8;
+}
+
+.arhiva-folder-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.arhiva-folder-summary::-webkit-details-marker {
+    display: none;
+}
+
+.arhiva-folder-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.arhiva-folder-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2d3c45;
+}
+
+.arhiva-folder-meta {
+    color: #49697b;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.arhiva-documents {
+    border-top: 1px solid rgba(125, 150, 163, 0.35);
+    padding: 0.35rem 1rem 0.8rem;
+}
+
+.arhiva-document {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 0.15rem;
+    border-bottom: 1px solid rgba(125, 150, 163, 0.25);
+    transition: var(--transition);
+}
+
+.arhiva-document:last-child {
+    border-bottom: 0;
+}
+
+.arhiva-document:hover {
+    color: #8d2047;
+}
+
+.arhiva-document-main {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: 0;
+}
+
+.arhiva-pdf-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 28px;
+    background: #b23232;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.arhiva-document-title {
+    color: #2d3c45;
+    font-size: 1.05rem;
+    overflow-wrap: anywhere;
+}
+
+.arhiva-document-action {
+    color: #8d2047;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ========================= */
 /* FOOTER */
 /* ========================= */
 
 .site-footer {
     background: var(--color-surface);
     padding: 2rem 0;
-    margin-top: 3rem;
+    margin-top: auto;
 }
 
 .footer-inner {
@@ -649,10 +836,28 @@ a {
     .galerie-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .arhiva-content-box {
+        padding: 1.2rem 1rem;
+    }
+
+    .arhiva-header {
+        align-items: flex-start;
+    }
+
+    .arhiva-folder-summary,
+    .arhiva-document {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 @media (max-width: 640px) {
     .galerie-grid {
         grid-template-columns: 1fr;
+    }
+
+    .arhiva-header {
+        flex-direction: column;
     }
 }
