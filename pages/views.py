@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import ArchiveFolder
+from .models import ArchiveFolder, RezultateYear
 
 
 def home(request):
@@ -28,7 +28,10 @@ def subiecte(request):
 
 
 def rezultate(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Rezultate"})
+    years = RezultateYear.objects.prefetch_related(
+        "judete__etape__documents"
+    ).all()
+    return render(request, "pages/rezultate.html", {"years": years})
 
 
 def arhiva(request):

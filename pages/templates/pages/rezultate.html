@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Rezultate | Queen Victoria{% endblock %}
+
+{% block body_class %}page-rezultate{% endblock %}
+
+{% block content %}
+<section class="rez-section">
+    <div class="rez-wrapper">
+        <div class="rez-content-box">
+            <div class="rez-header">
+                <h1 class="rez-title">Rezultate</h1>
+                <p class="rez-description">
+                    Selecteaza un an, un judet si o etapa pentru a vedea si descarca rezultatele.
+                </p>
+            </div>
+
+            {% if years %}
+                <div class="rez-accordion">
+                    {% for year in years %}
+                        <details class="rez-year" {% if forloop.first %}open{% endif %}>
+                            <summary class="rez-year-summary">
+                                <span class="rez-summary-left">
+                                    <svg class="rez-row-icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    <span class="rez-folder-name">{{ year.name }}</span>
+                                </span>
+                                <span class="rez-folder-meta">{{ year.judete.count }} judet{{ year.judete.count|pluralize:"," }}</span>
+                            </summary>
+
+                            <div class="rez-judete">
+                                {% for judet in year.judete.all %}
+                                    <details class="rez-judet">
+                                        <summary class="rez-judet-summary">
+                                            <span class="rez-summary-left">
+                                                <svg class="rez-row-icon rez-row-icon--sub" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                                <span class="rez-judet-name">{{ judet.name }}</span>
+                                            </span>
+                                            <span class="rez-folder-meta">{{ judet.etape.count }} etap{{ judet.etape.count|pluralize:"a,e" }}</span>
+                                        </summary>
+
+                                        <div class="rez-etape">
+                                            {% for etapa in judet.etape.all %}
+                                                <details class="rez-etapa">
+                                                    <summary class="rez-etapa-summary">
+                                                        <span class="rez-summary-left">
+                                                            <svg class="rez-row-icon rez-row-icon--etapa" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                                                <polyline points="14 2 14 8 20 8"></polyline>
+                                                            </svg>
+                                                            <span class="rez-etapa-name">{{ etapa.name }}</span>
+                                                        </span>
+                                                        <span class="rez-folder-meta">{{ etapa.documents.count }} PDF{{ etapa.documents.count|pluralize:",-uri" }}</span>
+                                                    </summary>
+
+                                                    <div class="rez-documents">
+                                                        {% if etapa.documents.all %}
+                                                            {% for doc in etapa.documents.all %}
+                                                                <a class="rez-document" href="{{ doc.file.url }}" download>
+                                                                    <span class="rez-document-main">
+                                                                        <span class="rez-pdf-badge">PDF</span>
+                                                                        <span class="rez-document-title">{{ doc.display_title }}</span>
+                                                                    </span>
+                                                                    <span class="rez-document-action">Descarca</span>
+                                                                </a>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <p class="rez-empty">Nu exista inca documente in aceasta etapa.</p>
+                                                        {% endif %}
+                                                    </div>
+                                                </details>
+                                            {% empty %}
+                                                <p class="rez-empty">Nu exista etape definite pentru acest judet.</p>
+                                            {% endfor %}
+                                        </div>
+                                    </details>
+                                {% empty %}
+                                    <p class="rez-empty">Nu exista judete definite pentru acest an.</p>
+                                {% endfor %}
+                            </div>
+                        </details>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="rez-empty-state">
+                    Nu exista rezultate momentan. Le poti adauga din panoul de administrare.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
