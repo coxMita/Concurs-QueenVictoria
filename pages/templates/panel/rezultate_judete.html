@@ -1,0 +1,77 @@
+{% extends "panel/base.html" %}
+
+{% block title %}{{ year.name }} — Judete | Panel{% endblock %}
+
+{% block content %}
+<div class="panel-page-header">
+    <h1 class="panel-page-title">{{ year.name }}</h1>
+    <div class="panel-breadcrumb">
+        <a href="{% url 'panel_dashboard' %}">Dashboard</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <a href="{% url 'panel_rezultate' %}">Rezultate</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <span>{{ year.name }}</span>
+    </div>
+</div>
+
+<div class="panel-card" style="margin-bottom:1.5rem;">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Adauga judet</h2>
+    </div>
+    <div class="panel-card-body">
+        <form method="post" class="panel-form">
+            {% csrf_token %}
+            <div class="panel-form-group">
+                <label class="panel-label" for="new-judet">Nume judet</label>
+                <input id="new-judet" name="name" type="text" class="panel-input"
+                       placeholder="ex: Cluj" required>
+            </div>
+            <button type="submit" class="panel-btn panel-btn--primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Adauga judet
+            </button>
+        </form>
+        <p style="margin:0.75rem 0 0;font-size:0.82rem;color:#6b7f88;">
+            Etapele din configurare vor fi create automat pentru judetul nou.
+        </p>
+    </div>
+</div>
+
+<div class="panel-card">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Judete ({{ judete|length }})</h2>
+    </div>
+    <div class="panel-card-body">
+        {% if judete %}
+            <div class="panel-subfolder-list">
+                {% for judet in judete %}
+                    <div class="panel-subfolder-item">
+                        <div class="panel-subfolder-left">
+                            <svg class="panel-subfolder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <span class="panel-subfolder-name">{{ judet.name }}</span>
+                        </div>
+                        <div class="panel-subfolder-actions">
+                            <span class="panel-subfolder-meta">{{ judet.etape.count }} etape</span>
+                            <a href="{% url 'panel_rezultate_judet' year.pk judet.pk %}"
+                               class="panel-btn panel-btn--primary panel-btn--sm">
+                                Deschide
+                            </a>
+                            <form method="post" action="{% url 'panel_rezultate_judet_delete' year.pk judet.pk %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="panel-btn panel-btn--ghost panel-btn--sm"
+                                        data-confirm="Stergi judetul {{ judet.name }} si tot ce contine?">
+                                    Sterge
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="panel-empty">Niciun judet creat pentru {{ year.name }}.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

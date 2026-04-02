@@ -1,0 +1,120 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Panel | Queen Victoria{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/panel.css' %}">
+</head>
+<body class="panel-body">
+<div class="panel-layout">
+
+    <aside class="panel-sidebar">
+        <div class="panel-sidebar-brand">
+            <span class="panel-brand-title">Queen Victoria</span>
+            <span class="panel-brand-sub">Panou Admin</span>
+        </div>
+
+        <nav class="panel-nav">
+            <a href="{% url 'panel_dashboard' %}"
+               class="panel-nav-link {% if current_section == 'dashboard' %}active{% endif %}">
+                <svg class="panel-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Dashboard
+            </a>
+
+            <div class="panel-nav-section">Rezultate</div>
+            <a href="{% url 'panel_rezultate' %}"
+               class="panel-nav-link {% if current_section == 'rezultate' %}active{% endif %}">
+                <svg class="panel-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Ani & Judete
+            </a>
+
+            <div class="panel-nav-section">Configurare</div>
+            <a href="{% url 'panel_config' %}"
+               class="panel-nav-link {% if current_section == 'config' %}active{% endif %}">
+                <svg class="panel-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"></path>
+                </svg>
+                Judete & Etape
+            </a>
+
+            <div class="panel-nav-section">Arhiva</div>
+            <a href="{% url 'panel_arhiva' %}"
+               class="panel-nav-link {% if current_section == 'arhiva' %}active{% endif %}">
+                <svg class="panel-nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                    <rect x="1" y="3" width="22" height="5"></rect>
+                    <line x1="10" y1="12" x2="14" y2="12"></line>
+                </svg>
+                Subiecte & Bareme
+            </a>
+        </nav>
+
+        <div class="panel-sidebar-footer">
+            <span class="panel-user">{{ request.user.username }}</span>
+            <form method="post" action="{% url 'panel_logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="panel-logout-btn">Logout</button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="panel-main">
+        {% if messages %}
+            <div class="panel-messages">
+                {% for msg in messages %}
+                    <div class="panel-message panel-message--{{ msg.tags }}">{{ msg }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+</div>
+<script>
+// File upload zone enhancement
+document.querySelectorAll('.panel-upload-zone').forEach(zone => {
+    const input = zone.querySelector('input[type="file"]');
+    const label = zone.querySelector('.panel-upload-selected');
+
+    zone.addEventListener('click', () => input.click());
+
+    zone.addEventListener('dragover', e => {
+        e.preventDefault();
+        zone.classList.add('drag-over');
+    });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+        e.preventDefault();
+        zone.classList.remove('drag-over');
+        input.files = e.dataTransfer.files;
+        updateLabel();
+    });
+
+    input.addEventListener('change', updateLabel);
+
+    function updateLabel() {
+        const count = input.files.length;
+        if (label) label.textContent = count > 0
+            ? count + ' fisier' + (count > 1 ? 'e selectate' : ' selectat')
+            : '';
+    }
+});
+
+// Delete confirmation
+document.querySelectorAll('[data-confirm]').forEach(btn => {
+    btn.addEventListener('click', e => {
+        if (!confirm(btn.dataset.confirm)) e.preventDefault();
+    });
+});
+</script>
+</body>
+</html>

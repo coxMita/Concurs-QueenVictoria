@@ -1,0 +1,738 @@
+/* ========================= */
+/* PANEL — Base Layout       */
+/* ========================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body.panel-body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f0f2f5;
+    color: #2d3c45;
+    min-height: 100vh;
+}
+
+.panel-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========================= */
+/* SIDEBAR                   */
+/* ========================= */
+
+.panel-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: #1e2b33;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+}
+
+.panel-sidebar-brand {
+    padding: 1.5rem 1.25rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.panel-brand-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1d566;
+    letter-spacing: 0.5px;
+}
+
+.panel-brand-sub {
+    display: block;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.panel-nav {
+    flex: 1;
+    padding: 1rem 0;
+}
+
+.panel-nav-section {
+    padding: 0.6rem 1.25rem 0.3rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 0.5rem;
+}
+
+.panel-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1.25rem;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: background 0.15s, color 0.15s;
+    border-left: 3px solid transparent;
+}
+
+.panel-nav-link:hover {
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+}
+
+.panel-nav-link.active {
+    background: rgba(141,32,71,0.25);
+    color: #fff;
+    border-left-color: #8d2047;
+}
+
+.panel-nav-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.panel-nav-link.active .panel-nav-icon,
+.panel-nav-link:hover .panel-nav-icon {
+    opacity: 1;
+}
+
+.panel-sidebar-footer {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.panel-user {
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.panel-logout-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.65);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.panel-logout-btn:hover {
+    background: rgba(141,32,71,0.5);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* ========================= */
+/* MAIN CONTENT              */
+/* ========================= */
+
+.panel-main {
+    margin-left: 240px;
+    flex: 1;
+    padding: 2rem;
+    min-width: 0;
+}
+
+/* ========================= */
+/* MESSAGES                  */
+/* ========================= */
+
+.panel-messages {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.panel-message {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.panel-message--success { background: #d4edda; color: #155724; border-left: 4px solid #28a745; }
+.panel-message--warning { background: #fff3cd; color: #856404; border-left: 4px solid #ffc107; }
+.panel-message--error   { background: #f8d7da; color: #721c24; border-left: 4px solid #dc3545; }
+.panel-message--info    { background: #d1ecf1; color: #0c5460; border-left: 4px solid #17a2b8; }
+
+/* ========================= */
+/* PAGE HEADER               */
+/* ========================= */
+
+.panel-page-header {
+    margin-bottom: 1.75rem;
+}
+
+.panel-page-title {
+    margin: 0 0 0.25rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e2b33;
+}
+
+.panel-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    color: #6b7f88;
+    flex-wrap: wrap;
+}
+
+.panel-breadcrumb a {
+    color: #8d2047;
+    text-decoration: none;
+}
+
+.panel-breadcrumb a:hover { text-decoration: underline; }
+
+.panel-breadcrumb-sep { color: #b0bec5; }
+
+/* ========================= */
+/* CARDS                     */
+/* ========================= */
+
+.panel-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.panel-card-header {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #eef0f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.panel-card-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e2b33;
+}
+
+.panel-card-body {
+    padding: 1.25rem;
+}
+
+/* ========================= */
+/* DASHBOARD STATS           */
+/* ========================= */
+
+.panel-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.panel-stat {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border-left: 4px solid #8d2047;
+}
+
+.panel-stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #8d2047;
+    line-height: 1;
+}
+
+.panel-stat-label {
+    margin-top: 0.3rem;
+    font-size: 0.82rem;
+    color: #6b7f88;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.panel-dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+/* ========================= */
+/* FORMS                     */
+/* ========================= */
+
+.panel-form {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.panel-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+    min-width: 160px;
+}
+
+.panel-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.panel-input {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid #d1d9e0;
+    border-radius: 5px;
+    font-size: 0.92rem;
+    color: #1e2b33;
+    background: #fafbfc;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+}
+
+.panel-input:focus {
+    outline: none;
+    border-color: #8d2047;
+    box-shadow: 0 0 0 3px rgba(141,32,71,0.1);
+    background: #fff;
+}
+
+/* ========================= */
+/* BUTTONS                   */
+/* ========================= */
+
+.panel-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 5px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    transition: background 0.15s, opacity 0.15s;
+    white-space: nowrap;
+}
+
+.panel-btn--primary {
+    background: #8d2047;
+    color: #fff;
+}
+
+.panel-btn--primary:hover { background: #7a1a3d; color: #fff; }
+
+.panel-btn--secondary {
+    background: #eef0f3;
+    color: #2d3c45;
+}
+
+.panel-btn--secondary:hover { background: #dde1e7; }
+
+.panel-btn--danger {
+    background: #dc3545;
+    color: #fff;
+}
+
+.panel-btn--danger:hover { background: #c82333; }
+
+.panel-btn--ghost {
+    background: transparent;
+    color: #dc3545;
+    border: 1px solid #dc3545;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+}
+
+.panel-btn--ghost:hover { background: #dc3545; color: #fff; }
+
+.panel-btn--sm {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.8rem;
+}
+
+/* ========================= */
+/* TABLES                    */
+/* ========================= */
+
+.panel-table-wrap {
+    overflow-x: auto;
+}
+
+.panel-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.panel-table th {
+    padding: 0.65rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b7f88;
+    border-bottom: 2px solid #eef0f3;
+    white-space: nowrap;
+}
+
+.panel-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f2f5;
+    vertical-align: middle;
+}
+
+.panel-table tr:last-child td { border-bottom: none; }
+
+.panel-table tr:hover td { background: #fafbfc; }
+
+.panel-table-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* ========================= */
+/* YEAR CARDS GRID           */
+/* ========================= */
+
+.panel-year-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.panel-year-card {
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid #eef0f3;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.panel-year-card-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #8d2047;
+}
+
+.panel-year-card-meta {
+    font-size: 0.85rem;
+    color: #6b7f88;
+}
+
+.panel-year-card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+/* ========================= */
+/* SUBFOLDER LIST            */
+/* ========================= */
+
+.panel-subfolder-list {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.panel-subfolder-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: #fafbfc;
+    border: 1px solid #eef0f3;
+    border-radius: 6px;
+    gap: 1rem;
+}
+
+.panel-subfolder-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+
+.panel-subfolder-icon {
+    color: #8d9ba3;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.panel-subfolder-name {
+    font-weight: 600;
+    color: #1e2b33;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.panel-subfolder-meta {
+    font-size: 0.8rem;
+    color: #8d9ba3;
+    flex-shrink: 0;
+}
+
+.panel-subfolder-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ========================= */
+/* UPLOAD ZONE               */
+/* ========================= */
+
+.panel-upload-zone {
+    border: 2px dashed #c8d0d8;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: #fafbfc;
+}
+
+.panel-upload-zone:hover,
+.panel-upload-zone.drag-over {
+    border-color: #8d2047;
+    background: rgba(141,32,71,0.04);
+}
+
+.panel-upload-zone input[type="file"] {
+    display: none;
+}
+
+.panel-upload-icon {
+    color: #8d9ba3;
+    margin-bottom: 0.75rem;
+}
+
+.panel-upload-text {
+    font-size: 0.95rem;
+    color: #4a5568;
+    margin: 0 0 0.35rem;
+}
+
+.panel-upload-sub {
+    font-size: 0.8rem;
+    color: #8d9ba3;
+    margin: 0 0 1rem;
+}
+
+.panel-upload-selected {
+    font-size: 0.85rem;
+    color: #8d2047;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+/* ========================= */
+/* CONFIG SECTIONS           */
+/* ========================= */
+
+.panel-config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+}
+
+.panel-config-list {
+    display: grid;
+    gap: 0.4rem;
+}
+
+.panel-config-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.75rem;
+    background: #fafbfc;
+    border: 1px solid #eef0f3;
+    border-radius: 5px;
+}
+
+.panel-config-item-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #1e2b33;
+}
+
+.panel-config-empty {
+    color: #8d9ba3;
+    font-size: 0.88rem;
+    font-style: italic;
+    padding: 0.5rem 0;
+}
+
+/* ========================= */
+/* BADGE                     */
+/* ========================= */
+
+.panel-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.15rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.panel-badge--pdf {
+    background: #b23232;
+    color: #fff;
+}
+
+.panel-badge--count {
+    background: #eef0f3;
+    color: #4a5568;
+}
+
+/* ========================= */
+/* LOGIN PAGE                */
+/* ========================= */
+
+body.panel-login-body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #1e2b33;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.panel-login-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    width: min(100% - 2rem, 380px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.panel-login-brand {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.panel-login-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #8d2047;
+    margin: 0 0 0.2rem;
+}
+
+.panel-login-sub {
+    font-size: 0.82rem;
+    color: #6b7f88;
+    margin: 0;
+}
+
+.panel-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.panel-login-form .panel-label {
+    display: block;
+    margin-bottom: 0.3rem;
+}
+
+.panel-login-form .panel-input {
+    width: 100%;
+}
+
+.panel-login-form .panel-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem;
+    font-size: 0.95rem;
+}
+
+.panel-login-error {
+    background: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+    border-radius: 5px;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.88rem;
+}
+
+/* ========================= */
+/* EMPTY STATES              */
+/* ========================= */
+
+.panel-empty {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    color: #8d9ba3;
+    font-size: 0.92rem;
+}
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media (max-width: 900px) {
+    .panel-sidebar {
+        width: 200px;
+    }
+    .panel-main {
+        margin-left: 200px;
+    }
+    .panel-dashboard-grid,
+    .panel-config-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .panel-sidebar {
+        display: none;
+    }
+    .panel-main {
+        margin-left: 0;
+        padding: 1rem;
+    }
+    .panel-year-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}

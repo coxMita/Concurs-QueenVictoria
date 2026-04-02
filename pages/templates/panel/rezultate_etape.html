@@ -1,0 +1,77 @@
+{% extends "panel/base.html" %}
+
+{% block title %}{{ judet.name }} — Etape | Panel{% endblock %}
+
+{% block content %}
+<div class="panel-page-header">
+    <h1 class="panel-page-title">{{ judet.name }}</h1>
+    <div class="panel-breadcrumb">
+        <a href="{% url 'panel_dashboard' %}">Dashboard</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <a href="{% url 'panel_rezultate' %}">Rezultate</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <a href="{% url 'panel_rezultate_year' year.pk %}">{{ year.name }}</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <span>{{ judet.name }}</span>
+    </div>
+</div>
+
+<div class="panel-card" style="margin-bottom:1.5rem;">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Adauga etapa</h2>
+    </div>
+    <div class="panel-card-body">
+        <form method="post" class="panel-form">
+            {% csrf_token %}
+            <div class="panel-form-group">
+                <label class="panel-label" for="new-etapa">Nume etapa</label>
+                <input id="new-etapa" name="name" type="text" class="panel-input"
+                       placeholder="ex: Etapa Judeteana" required>
+            </div>
+            <button type="submit" class="panel-btn panel-btn--primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Adauga etapa
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="panel-card">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Etape ({{ etape|length }})</h2>
+    </div>
+    <div class="panel-card-body">
+        {% if etape %}
+            <div class="panel-subfolder-list">
+                {% for etapa in etape %}
+                    <div class="panel-subfolder-item">
+                        <div class="panel-subfolder-left">
+                            <svg class="panel-subfolder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                            <span class="panel-subfolder-name">{{ etapa.name }}</span>
+                        </div>
+                        <div class="panel-subfolder-actions">
+                            <span class="panel-subfolder-meta">{{ etapa.documents.count }} PDF-uri</span>
+                            <a href="{% url 'panel_rezultate_etapa' year.pk judet.pk etapa.pk %}"
+                               class="panel-btn panel-btn--primary panel-btn--sm">
+                                Upload PDF-uri
+                            </a>
+                            <form method="post" action="{% url 'panel_rezultate_etapa_delete' year.pk judet.pk etapa.pk %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="panel-btn panel-btn--ghost panel-btn--sm"
+                                        data-confirm="Stergi etapa {{ etapa.name }} si tot ce contine?">
+                                    Sterge
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="panel-empty">Nicio etapa creata pentru {{ judet.name }}.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

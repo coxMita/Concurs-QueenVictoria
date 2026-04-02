@@ -1,0 +1,106 @@
+{% extends "panel/base.html" %}
+
+{% block title %}{{ etapa.name }} — Documente | Panel{% endblock %}
+
+{% block content %}
+<div class="panel-page-header">
+    <h1 class="panel-page-title">{{ etapa.name }}</h1>
+    <div class="panel-breadcrumb">
+        <a href="{% url 'panel_dashboard' %}">Dashboard</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <a href="{% url 'panel_rezultate' %}">Rezultate</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <a href="{% url 'panel_rezultate_year' year.pk %}">{{ year.name }}</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <a href="{% url 'panel_rezultate_judet' year.pk judet.pk %}">{{ judet.name }}</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <span>{{ etapa.name }}</span>
+    </div>
+</div>
+
+<div class="panel-card" style="margin-bottom:1.5rem;">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Incarca PDF-uri</h2>
+    </div>
+    <div class="panel-card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="panel-upload-zone" id="upload-zone">
+                <input type="file" name="files" multiple accept=".pdf">
+                <div class="panel-upload-icon">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="16 16 12 12 8 16"></polyline>
+                        <line x1="12" y1="12" x2="12" y2="21"></line>
+                        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                    </svg>
+                </div>
+                <p class="panel-upload-text">Trage fisierele PDF aici sau click pentru selectare</p>
+                <p class="panel-upload-sub">Poti selecta mai multe fisiere deodata</p>
+                <span class="panel-upload-selected"></span>
+            </label>
+            <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+                <button type="submit" class="panel-btn panel-btn--primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="16 16 12 12 8 16"></polyline>
+                        <line x1="12" y1="12" x2="12" y2="21"></line>
+                        <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+                    </svg>
+                    Incarca fisierele
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel-card">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Documente incarcate ({{ docs|length }})</h2>
+    </div>
+    {% if docs %}
+        <div class="panel-table-wrap">
+            <table class="panel-table">
+                <thead>
+                    <tr>
+                        <th>Fisier</th>
+                        <th>Data upload</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in docs %}
+                        <tr>
+                            <td>
+                                <div style="display:flex;align-items:center;gap:0.6rem;">
+                                    <span class="panel-badge panel-badge--pdf">PDF</span>
+                                    <a href="{{ doc.file.url }}" target="_blank"
+                                       style="color:#8d2047;font-weight:500;">
+                                        {{ doc.display_title }}
+                                    </a>
+                                </div>
+                            </td>
+                            <td style="color:#6b7f88;font-size:0.85rem;">
+                                {{ doc.uploaded_at|date:"d.m.Y H:i" }}
+                            </td>
+                            <td>
+                                <div class="panel-table-actions">
+                                    <form method="post" action="{% url 'panel_rezultate_doc_delete' year.pk judet.pk etapa.pk doc.pk %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="panel-btn panel-btn--ghost panel-btn--sm"
+                                                data-confirm="Stergi {{ doc.display_title }}?">
+                                            Sterge
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="panel-card-body">
+            <p class="panel-empty">Niciun document incarcat inca.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
