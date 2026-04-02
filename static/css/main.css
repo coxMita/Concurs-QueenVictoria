@@ -40,7 +40,8 @@ body {
 .page-informatii,
 .page-calendar,
 .page-parteneri,
-.page-subiecte {
+.page-subiecte,
+.page-tematica {
     background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
     background-size: cover;
     background-position: center;
@@ -353,6 +354,75 @@ a {
 }
 
 /* ========================= */
+/* TEMATICA */
+/* ========================= */
+
+.tematica-section {
+    padding: 2.5rem 0 1.5rem;
+}
+
+.tematica-wrapper {
+    width: min(100% - 2rem, 960px);
+    margin: 0 auto;
+}
+
+.tematica-content-box {
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid #e26b5b;
+    padding: 1.5rem;
+}
+
+.tematica-title {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #8d2047;
+    margin: 0 0 0.75rem;
+    letter-spacing: 1px;
+}
+
+.tematica-description {
+    text-align: center;
+    color: #2f4f4f;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0 0 1.25rem;
+}
+
+.tematica-viewer-shell {
+    background: #f4f0e8;
+    border: 1px solid #d8cfc1;
+    padding: 0.75rem;
+}
+
+.tematica-pdf-viewer {
+    display: block;
+    width: 100%;
+    height: 950px;
+    border: 0;
+    background: white;
+}
+
+.tematica-download-section {
+    padding: 1rem 0 0;
+    text-align: center;
+}
+
+.tematica-download-button {
+    display: inline-block;
+    background: #6f2b2b;
+    color: #ffffff;
+    letter-spacing: 1.6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.55rem 1.6rem;
+    transition: var(--transition);
+}
+
+.tematica-download-button:hover {
+    background: #8d2047;
+}
+
+/* ========================= */
 /* FOOTER */
 /* ========================= */
 
@@ -449,5 +519,14 @@ a {
     .subiecte-content-box p,
     .subiecte-content-box li {
         font-size: 1.05rem;
+    }
+
+    .tematica-content-box {
+        padding: 1rem;
+    }
+
+    .tematica-pdf-viewer {
+        height: 70vh;
+        min-height: 500px;
     }
 }

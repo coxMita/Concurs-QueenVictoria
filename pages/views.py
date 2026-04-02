@@ -34,7 +34,7 @@ def arhiva(request):
 
 
 def tematica(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Tematica"})
+    return render(request, "pages/tematica.html")
 
 
 def regulament(request):
