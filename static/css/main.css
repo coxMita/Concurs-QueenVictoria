@@ -25,6 +25,13 @@ body {
     margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
 }
 
 /* ========================= */
@@ -716,7 +723,7 @@ a {
 .site-footer {
     background: var(--color-surface);
     padding: 2rem 0;
-    margin-top: 3rem;
+    margin-top: auto;
 }
 
 .footer-inner {
