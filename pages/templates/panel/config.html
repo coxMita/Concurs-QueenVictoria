@@ -1,0 +1,103 @@
+{% extends "panel/base.html" %}
+
+{% block title %}Configurare | Panel{% endblock %}
+
+{% block content %}
+<div class="panel-page-header">
+    <h1 class="panel-page-title">Configurare</h1>
+    <div class="panel-breadcrumb">
+        <a href="{% url 'panel_dashboard' %}">Dashboard</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <span>Configurare Judete &amp; Etape</span>
+    </div>
+</div>
+
+<div style="background:#fff3cd;border-left:4px solid #ffc107;border-radius:6px;padding:0.75rem 1rem;margin-bottom:1.5rem;font-size:0.88rem;color:#856404;">
+    Modificarile din configurare se aplica automat la crearea de <strong>ani noi</strong> sau <strong>judete noi</strong>.
+    Folderele existente nu sunt afectate.
+</div>
+
+<div class="panel-config-grid">
+    <!-- JUDETE CONFIG -->
+    <div class="panel-card">
+        <div class="panel-card-header">
+            <h2 class="panel-card-title">Judete implicite</h2>
+        </div>
+        <div class="panel-card-body">
+            <form method="post" class="panel-form" style="margin-bottom:1.25rem;">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_judet">
+                <div class="panel-form-group">
+                    <label class="panel-label" for="judet-name">Judet nou</label>
+                    <input id="judet-name" name="name" type="text" class="panel-input"
+                           placeholder="ex: Iasi" required>
+                </div>
+                <button type="submit" class="panel-btn panel-btn--primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Adauga
+                </button>
+            </form>
+
+            <div class="panel-config-list">
+                {% for j in judete %}
+                    <div class="panel-config-item">
+                        <span class="panel-config-item-name">{{ j.name }}</span>
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="del_judet">
+                            <input type="hidden" name="pk" value="{{ j.pk }}">
+                            <button type="submit" class="panel-btn panel-btn--ghost panel-btn--sm"
+                                    data-confirm="Stergi judetul '{{ j.name }}' din configurare?">
+                                &times;
+                            </button>
+                        </form>
+                    </div>
+                {% empty %}
+                    <p class="panel-config-empty">Niciun judet configurat.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- ETAPE CONFIG -->
+    <div class="panel-card">
+        <div class="panel-card-header">
+            <h2 class="panel-card-title">Etape implicite</h2>
+        </div>
+        <div class="panel-card-body">
+            <form method="post" class="panel-form" style="margin-bottom:1.25rem;">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_etapa">
+                <div class="panel-form-group">
+                    <label class="panel-label" for="etapa-name">Etapa noua</label>
+                    <input id="etapa-name" name="name" type="text" class="panel-input"
+                           placeholder="ex: Etapa Judeteana" required>
+                </div>
+                <button type="submit" class="panel-btn panel-btn--primary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    Adauga
+                </button>
+            </form>
+
+            <div class="panel-config-list">
+                {% for e in etape %}
+                    <div class="panel-config-item">
+                        <span class="panel-config-item-name">{{ e.name }}</span>
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="del_etapa">
+                            <input type="hidden" name="pk" value="{{ e.pk }}">
+                            <button type="submit" class="panel-btn panel-btn--ghost panel-btn--sm"
+                                    data-confirm="Stergi etapa '{{ e.name }}' din configurare?">
+                                &times;
+                            </button>
+                        </form>
+                    </div>
+                {% empty %}
+                    <p class="panel-config-empty">Nicio etapa configurata.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

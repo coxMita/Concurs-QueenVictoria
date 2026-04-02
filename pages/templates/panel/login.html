@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Panel Queen Victoria</title>
+    <link rel="stylesheet" href="{% static 'css/panel.css' %}">
+</head>
+<body class="panel-login-body">
+
+<div class="panel-login-card">
+    <div class="panel-login-brand">
+        <p class="panel-login-title">Queen Victoria — Panou Admin</p>
+        <p class="panel-login-sub">Autentifica-te cu contul de administrator</p>
+    </div>
+
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="panel-login-error" style="margin-bottom:1rem;">{{ msg }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" class="panel-login-form">
+        {% csrf_token %}
+        <div>
+            <label class="panel-label" for="username">Utilizator</label>
+            <input id="username" name="username" type="text" class="panel-input"
+                   autocomplete="username" autofocus required>
+        </div>
+        <div>
+            <label class="panel-label" for="password">Parola</label>
+            <input id="password" name="password" type="password" class="panel-input"
+                   autocomplete="current-password" required>
+        </div>
+        <button type="submit" class="panel-btn panel-btn--primary">Autentificare</button>
+    </form>
+</div>
+
+</body>
+</html>

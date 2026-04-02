@@ -1,0 +1,72 @@
+{% extends "panel/base.html" %}
+
+{% block title %}Rezultate — Ani | Panel{% endblock %}
+
+{% block content %}
+<div class="panel-page-header">
+    <h1 class="panel-page-title">Rezultate</h1>
+    <div class="panel-breadcrumb">
+        <a href="{% url 'panel_dashboard' %}">Dashboard</a>
+        <span class="panel-breadcrumb-sep">/</span>
+        <span>Ani rezultate</span>
+    </div>
+</div>
+
+<div class="panel-card" style="margin-bottom:1.5rem;">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Adauga an nou</h2>
+    </div>
+    <div class="panel-card-body">
+        <form method="post" class="panel-form">
+            {% csrf_token %}
+            <div class="panel-form-group">
+                <label class="panel-label" for="new-year">An (ex: 2027)</label>
+                <input id="new-year" name="name" type="text" class="panel-input"
+                       placeholder="ex: 2027" required>
+            </div>
+            <button type="submit" class="panel-btn panel-btn--primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Creeaza an
+            </button>
+        </form>
+        <p style="margin:0.75rem 0 0;font-size:0.82rem;color:#6b7f88;">
+            La creare se genereaza automat subfoldere pentru judete si etape din configurare.
+        </p>
+    </div>
+</div>
+
+<div class="panel-card">
+    <div class="panel-card-header">
+        <h2 class="panel-card-title">Ani existenti ({{ years|length }})</h2>
+    </div>
+    <div class="panel-card-body">
+        {% if years %}
+            <div class="panel-year-grid">
+                {% for year in years %}
+                    <div class="panel-year-card">
+                        <div class="panel-year-card-name">{{ year.name }}</div>
+                        <div class="panel-year-card-meta">
+                            {{ year.judete.count }} judet{{ year.judete.count|pluralize:"," }}
+                        </div>
+                        <div class="panel-year-card-actions">
+                            <a href="{% url 'panel_rezultate_year' year.pk %}"
+                               class="panel-btn panel-btn--primary panel-btn--sm">
+                                Deschide
+                            </a>
+                            <form method="post" action="{% url 'panel_rezultate_year_delete' year.pk %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="panel-btn panel-btn--ghost panel-btn--sm"
+                                        data-confirm="Stergi anul {{ year.name }} si tot ce contine?">
+                                    Sterge
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="panel-empty">Niciun an creat inca. Foloseste formularul de mai sus.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

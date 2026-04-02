@@ -49,6 +49,7 @@ main {
 .page-parteneri,
 .page-subiecte,
 .page-arhiva,
+.page-rezultate,
 .page-tematica,
 .page-regulament,
 .page-galerie {
@@ -693,6 +694,243 @@ a {
 }
 
 /* ========================= */
+/* REZULTATE */
+/* ========================= */
+
+.rez-section {
+    padding: 2.5rem 0 1.5rem;
+}
+
+.rez-wrapper {
+    width: min(100% - 2rem, 980px);
+    margin: 0 auto;
+}
+
+.rez-content-box {
+    background: rgba(255, 255, 255, 0.94);
+    border: 2px solid #e26b5b;
+    padding: 1.5rem;
+}
+
+.rez-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.rez-title {
+    margin: 0 0 0.35rem;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: #8d2047;
+    letter-spacing: 1px;
+}
+
+.rez-description,
+.rez-empty-state,
+.rez-empty {
+    margin: 0;
+    color: #2f4f4f;
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.rez-empty {
+    padding: 0.6rem 1rem;
+}
+
+.rez-accordion {
+    display: grid;
+    gap: 0.85rem;
+}
+
+/* Year level */
+.rez-year {
+    border: 1px solid rgba(125, 150, 163, 0.45);
+    background: #fffdf8;
+}
+
+.rez-year-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.rez-year-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Judet level */
+.rez-judete {
+    border-top: 1px solid rgba(125, 150, 163, 0.35);
+    padding: 0.5rem 1rem 0.8rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.rez-judet {
+    border: 1px solid rgba(125, 150, 163, 0.3);
+    background: #f9f7f2;
+}
+
+.rez-judet-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.rez-judet-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Etapa level */
+.rez-etape {
+    border-top: 1px solid rgba(125, 150, 163, 0.25);
+    padding: 0.4rem 1rem 0.6rem;
+    display: grid;
+    gap: 0.4rem;
+}
+
+.rez-etapa {
+    border: 1px solid rgba(125, 150, 163, 0.25);
+    background: #f4f2ee;
+}
+
+.rez-etapa-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.9rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.rez-etapa-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Shared summary parts */
+.rez-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.rez-row-icon {
+    flex: 0 0 auto;
+    color: #5a6b74;
+    background: transparent !important;
+    border: none !important;
+    width: 26px;
+    height: 26px;
+}
+
+.rez-row-icon--sub {
+    width: 22px;
+    height: 22px;
+    color: #6b7f88;
+}
+
+.rez-row-icon--etapa {
+    width: 20px;
+    height: 20px;
+    color: #7d8f96;
+}
+
+.rez-folder-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #2d3c45;
+}
+
+.rez-judet-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #2d3c45;
+}
+
+.rez-etapa-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #2d3c45;
+}
+
+.rez-folder-meta {
+    color: #49697b;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+/* Documents inside etapa */
+.rez-documents {
+    border-top: 1px solid rgba(125, 150, 163, 0.25);
+    padding: 0.3rem 0.9rem 0.7rem;
+}
+
+.rez-document {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0.1rem;
+    border-bottom: 1px solid rgba(125, 150, 163, 0.2);
+    transition: var(--transition);
+}
+
+.rez-document:last-child {
+    border-bottom: 0;
+}
+
+.rez-document:hover {
+    color: #8d2047;
+}
+
+.rez-document-main {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    min-width: 0;
+}
+
+.rez-pdf-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 28px;
+    background: #b23232;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+}
+
+.rez-document-title {
+    color: #2d3c45;
+    font-size: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.rez-document-action {
+    color: #8d2047;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* ========================= */
 /* FOOTER */
 /* ========================= */
 
@@ -823,6 +1061,18 @@ a {
 
     .arhiva-folder-summary,
     .arhiva-document {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rez-content-box {
+        padding: 1.2rem 1rem;
+    }
+
+    .rez-year-summary,
+    .rez-judet-summary,
+    .rez-etapa-summary,
+    .rez-document {
         flex-direction: column;
         align-items: flex-start;
     }

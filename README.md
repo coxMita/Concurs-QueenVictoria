@@ -1,42 +1,95 @@
-# 🇬🇧 Queen Victoria Contest Website
+# Queen Victoria Contest Website
 
-A Django-based web application for the **“Concursul Național de Cultură și Civilizație Britanică – Queen Victoria”**.
+A Django-based web application for the **"Concursul Național de Cultură și Civilizație Britanică – Queen Victoria"**.
+
+---
 
 ## Project Structure
 
 ```
 CONCURS-QUEENVICTORIA/
 │
-├── config/                 # Django project configuration
+├── config/                         # Django project configuration
 │   ├── settings.py
 │   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
 │
-├── pages/                  # Main app for pages
-│   ├── views.py
-│   ├── urls.py
-│   └── templates/pages/    # Page-level templates
-│       ├── home.html
-│       ├── informatii.html
-│       ├── calendar.html
-│       └── blank_page.html
+├── pages/                          # Main Django app
+│   ├── models.py                   # All database models
+│   ├── views.py                    # Public page views
+│   ├── urls.py                     # Public URL routes
+│   ├── admin.py                    # Django admin configuration
+│   ├── panel_views.py              # Custom admin panel views
+│   ├── panel_urls.py               # Custom admin panel URL routes
+│   │
+│   └── templates/
+│       ├── pages/                  # Public page templates
+│       │   ├── home.html
+│       │   ├── informatii.html
+│       │   ├── calendar.html
+│       │   ├── parteneri.html
+│       │   ├── subiecte.html
+│       │   ├── rezultate.html
+│       │   ├── arhiva.html
+│       │   ├── tematica.html
+│       │   ├── regulament.html
+│       │   ├── galerie.html
+│       │   └── blank_page.html
+│       │
+│       └── panel/                  # Custom admin panel templates
+│           ├── base.html
+│           ├── login.html
+│           ├── dashboard.html
+│           ├── config.html
+│           ├── arhiva.html
+│           ├── arhiva_folder.html
+│           ├── rezultate_years.html
+│           ├── rezultate_judete.html
+│           ├── rezultate_etape.html
+│           └── rezultate_docs.html
 │
-├── templates/              # Global templates
-│   ├── base.html
+├── templates/                      # Project-wide templates
+│   ├── base.html                   # Base layout (header + footer + blocks)
 │   └── components/
 │       ├── header.html
 │       ├── footer.html
 │       └── sections/
-│           ├── hero.html
-│           ├── about_contest.html
-│           └── organizer.html
+│           ├── home/
+│           │   ├── hero.html
+│           │   ├── about_contest.html
+│           │   └── organizer.html
+│           ├── informatii/
+│           │   ├── informatii_intro.html
+│           │   ├── informatii_etape.html
+│           │   ├── informatii_structura.html
+│           │   ├── informatii_calificare.html
+│           │   ├── informatii_premiere.html
+│           │   └── informatii_contestatii.html
+│           ├── Subiecte/
+│           │   ├── content.html
+│           │   └── button_section.html
+│           ├── tematica/
+│           │   └── tematica.html
+│           ├── regulament/
+│           │   └── regulament.html
+│           └── galerie/
+│               └── galerie.html
 │
-├── static/                 # Static files
+├── static/
 │   ├── css/
-│   │   └── main.css
+│   │   ├── main.css                # Public site styles
+│   │   └── panel.css               # Custom admin panel styles
 │   ├── ts/
 │   │   └── main.js
-│   └── images/
+│   ├── images/                     # AVIF images (background, gallery, partners, hero)
+│   └── pdfs/                       # Static PDFs (tematica, regulament, guide)
 │
+├── media/                          # User-uploaded files (PDFs via admin/panel)
+│   ├── archive/                    # Uploaded archive documents
+│   └── rezultate/                  # Uploaded results documents
+│
+├── requirements.txt
 ├── manage.py
 └── db.sqlite3
 ```
@@ -52,24 +105,18 @@ git clone https://github.com/your-username/queen-victoria-site.git
 cd queen-victoria-site
 ```
 
----
-
-### 2. Create virtual environment (using uv)
+### 2. Create virtual environment
 
 ```bash
 uv venv
 source .venv/bin/activate
 ```
 
----
-
 ### 3. Install dependencies
 
 ```bash
-uv pip install django
+uv pip install -r requirements.txt
 ```
-
----
 
 ### 4. Run migrations
 
@@ -77,126 +124,107 @@ uv pip install django
 python manage.py migrate
 ```
 
----
+### 5. Create a superuser
 
-### 5. Run development server
+```bash
+python manage.py createsuperuser
+```
+
+### 6. Run development server
 
 ```bash
 python manage.py runserver
 ```
 
-Open:
+---
 
-```
-http://127.0.0.1:8000/
-```
+## Public Pages
+
+| Route | Description |
+|---|---|
+| `/` | Home page |
+| `/informatii/` | Contest information |
+| `/calendar/` | Competition calendar |
+| `/parteneri/` | Partners |
+| `/surse/` | Sources |
+| `/subiecte/` | Subjects |
+| `/rezultate/` | Results — 3-level accordion (Year → Judet → Etapa → PDFs) |
+| `/arhiva/` | Archive — folders with downloadable PDFs |
+| `/tematica/` | Tematica PDF viewer |
+| `/regulament/` | Regulament PDF viewer |
+| `/galerie/` | Photo gallery |
 
 ---
 
-## Architecture Overview
+## Admin Interfaces
 
-### 🔹 Base Layout
+### Django Admin — `/admin/`
 
-All pages extend:
+Standard Django admin. Registered models:
 
-```
-templates/base.html
-```
+- **ArchiveFolder** / **ArchiveDocument** — Arhiva subiecte & bareme with bulk PDF upload
+- **RezultateYear** / **RezultateJudet** / **RezultateEtapa** / **RezultateDocument** — Results hierarchy with auto-populate action
+- **JudetConfig** / **EtapaConfig** — Default lists used when creating new years/judete
 
-It includes:
+### Custom Panel — `/panel/`
 
-* Header component
-* Footer component
-* Static CSS/JS
+A purpose-built management UI for easier content management. Requires staff login.
 
----
-
-### 🔹 Components System
-
-Reusable UI elements:
-
-```
-templates/components/
-```
-
-* `header.html` → navigation
-* `footer.html` → contact info
-* `sections/` → homepage blocks
+| Route | Description |
+|---|---|
+| `/panel/` | Redirects to login |
+| `/panel/login/` | Login with admin credentials |
+| `/panel/dashboard/` | Overview with stats and recent items |
+| `/panel/rezultate/` | Create years (auto-populates judete + etape from config) |
+| `/panel/rezultate/<year_id>/` | Manage judete for a year |
+| `/panel/rezultate/<year_id>/<judet_id>/` | Manage etape for a judet |
+| `/panel/rezultate/<year_id>/<judet_id>/<etapa_id>/` | Upload/delete PDFs (drag & drop) |
+| `/panel/config/` | Edit default JudetConfig & EtapaConfig lists |
+| `/panel/arhiva/` | Create/delete archive folders |
+| `/panel/arhiva/<folder_id>/` | Upload/delete PDFs in an archive folder (drag & drop) |
 
 ---
 
-### 🔹 Page Composition
+## Data Models
 
-Example:
+### Arhiva
 
 ```
-home.html
+ArchiveFolder
+└── ArchiveDocument (PDF, upload_to: archive/<folder>/)
 ```
 
-```html
-{% extends "base.html" %}
+### Rezultate
 
-{% block content %}
-    {% include "components/sections/hero.html" %}
-    {% include "components/sections/about_contest.html" %}
-    {% include "components/sections/organizer.html" %}
-{% endblock %}
+```
+JudetConfig          ← global defaults for auto-population
+EtapaConfig          ← global defaults for auto-population
+
+RezultateYear
+└── RezultateJudet
+    └── RezultateEtapa
+        └── RezultateDocument (PDF, upload_to: rezultate/<year>/<judet>/<etapa>/)
 ```
 
-✔ Each section is modular
-✔ Easy to reuse or reorder
+When a new `RezultateYear` is created (via panel or admin action), all judete from `JudetConfig` and all etape from `EtapaConfig` are automatically generated.
 
 ---
 
-## Static Files
+## Architecture
 
-All static assets are stored in:
+All public pages extend `templates/base.html` which provides:
+- `{% block title %}` — page title
+- `{% block body_class %}` — CSS class for page-specific background
+- `{% block content %}` — main content
 
-```
-static/
-```
-
-Usage in templates:
-
-```django
-{% load static %}
-<img src="{% static 'images/example.avif' %}">
-```
-
----
-
-## Pages
-
-| Route          | Description           |
-| -------------- | --------------------- |
-| `/`            | Home page             |
-| `/informatii/` | Detailed contest info |
-| `/calendar/`   | Calendar              |
-| `/parteneri/`  | Blank page            |
-| `/surse/`      | Blank page            |
-| `/subiecte/`   | Blank page            |
-| `/rezultate/`  | Blank page            |
-| `/arhiva/`     | Blank page            |
-| `/tematica/`   | Blank page            |
-| `/regulament/` | Blank page            |
-| `/galerie/`    | Blank page            |
-
----
-
-## Best Practices Used
-
-* DRY (Don't Repeat Yourself)
-* Separation of concerns
-* Component-based templating
-* Clean routing with Django
-* Scalable folder structure
+The panel uses a separate `pages/templates/panel/base.html` with a sidebar layout and its own `static/css/panel.css`, completely independent of the public site styles.
 
 ---
 
 ## Authors
 
-* Mihai Briceag
-* Stefan Sisu
+- Mihai Briceag
+- Stefan Sisu
 
 ---
 

@@ -1,0 +1,97 @@
+{% extends "panel/base.html" %}
+
+{% block title %}Dashboard | Panel Queen Victoria{% endblock %}
+
+{% block content %}
+<div class="panel-page-header">
+    <h1 class="panel-page-title">Dashboard</h1>
+</div>
+
+<div class="panel-stats">
+    <div class="panel-stat">
+        <div class="panel-stat-value">{{ years_count }}</div>
+        <div class="panel-stat-label">Ani rezultate</div>
+    </div>
+    <div class="panel-stat">
+        <div class="panel-stat-value">{{ rez_docs_count }}</div>
+        <div class="panel-stat-label">PDF-uri rezultate</div>
+    </div>
+    <div class="panel-stat">
+        <div class="panel-stat-value">{{ archive_folders_count }}</div>
+        <div class="panel-stat-label">Foldere arhiva</div>
+    </div>
+    <div class="panel-stat">
+        <div class="panel-stat-value">{{ archive_docs_count }}</div>
+        <div class="panel-stat-label">PDF-uri arhiva</div>
+    </div>
+</div>
+
+<div class="panel-dashboard-grid">
+    <div class="panel-card">
+        <div class="panel-card-header">
+            <h2 class="panel-card-title">Ani rezultate recenti</h2>
+            <a href="{% url 'panel_rezultate' %}" class="panel-btn panel-btn--secondary panel-btn--sm">
+                Vezi toti
+            </a>
+        </div>
+        <div class="panel-card-body">
+            {% if recent_years %}
+                <div class="panel-subfolder-list">
+                    {% for year in recent_years %}
+                        <div class="panel-subfolder-item">
+                            <div class="panel-subfolder-left">
+                                <svg class="panel-subfolder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                </svg>
+                                <span class="panel-subfolder-name">{{ year.name }}</span>
+                            </div>
+                            <div class="panel-subfolder-actions">
+                                <span class="panel-subfolder-meta">{{ year.judete.count }} judete</span>
+                                <a href="{% url 'panel_rezultate_year' year.pk %}" class="panel-btn panel-btn--secondary panel-btn--sm">
+                                    Deschide
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="panel-empty">Niciun an creat inca.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="panel-card">
+        <div class="panel-card-header">
+            <h2 class="panel-card-title">Foldere arhiva recente</h2>
+            <a href="{% url 'panel_arhiva' %}" class="panel-btn panel-btn--secondary panel-btn--sm">
+                Vezi toate
+            </a>
+        </div>
+        <div class="panel-card-body">
+            {% if recent_folders %}
+                <div class="panel-subfolder-list">
+                    {% for folder in recent_folders %}
+                        <div class="panel-subfolder-item">
+                            <div class="panel-subfolder-left">
+                                <svg class="panel-subfolder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="21 8 21 21 3 21 3 8"></polyline>
+                                    <rect x="1" y="3" width="22" height="5"></rect>
+                                </svg>
+                                <span class="panel-subfolder-name">{{ folder.name }}</span>
+                            </div>
+                            <div class="panel-subfolder-actions">
+                                <span class="panel-subfolder-meta">{{ folder.documents.count }} PDF-uri</span>
+                                <a href="{% url 'panel_arhiva_folder' folder.pk %}" class="panel-btn panel-btn--secondary panel-btn--sm">
+                                    Deschide
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="panel-empty">Niciun folder creat inca.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
