@@ -558,49 +558,25 @@ a {
 
 .arhiva-header {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
-}
-
-.arhiva-folder-icon,
-.arhiva-folder-row-icon {
-    position: relative;
-    flex: 0 0 auto;
-    background: linear-gradient(180deg, #e8be61 0%, #d79b3d 100%);
-    border: 1px solid #8d2047;
-    border-radius: 8px;
+    text-align: center;
 }
 
 .arhiva-folder-icon {
-    width: 58px;
-    height: 42px;
-}
-
-.arhiva-folder-icon span,
-.arhiva-folder-row-icon::before {
-    position: absolute;
-    content: "";
-    top: -7px;
-    left: 7px;
-    width: 22px;
-    height: 12px;
-    background: #f1d566;
-    border: 1px solid #8d2047;
-    border-bottom: 0;
-    border-radius: 6px 6px 0 0;
+    display: none;
 }
 
 .arhiva-folder-row-icon {
+    flex: 0 0 auto;
+    color: #5a6b74;
+    background: transparent !important;
+    border: none !important;
     width: 28px;
-    height: 22px;
-}
-
-.arhiva-folder-row-icon::before {
-    top: -5px;
-    left: 4px;
-    width: 12px;
-    height: 7px;
+    height: 28px;
 }
 
 .arhiva-title {
