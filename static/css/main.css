@@ -41,7 +41,8 @@ body {
 .page-calendar,
 .page-parteneri,
 .page-subiecte,
-.page-tematica {
+.page-tematica,
+.page-regulament {
     background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
     background-size: cover;
     background-position: center;
@@ -423,6 +424,75 @@ a {
 }
 
 /* ========================= */
+/* REGULAMENT */
+/* ========================= */
+
+.regulament-section {
+    padding: 2.5rem 0 1.5rem;
+}
+
+.regulament-wrapper {
+    width: min(100% - 2rem, 960px);
+    margin: 0 auto;
+}
+
+.regulament-content-box {
+    background: rgba(255, 255, 255, 0.92);
+    border: 2px solid #e26b5b;
+    padding: 1.5rem;
+}
+
+.regulament-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+    color: #8d2047;
+    margin: 0 0 0.75rem;
+    letter-spacing: 1px;
+}
+
+.regulament-description {
+    text-align: center;
+    color: #2f4f4f;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0 0 1.25rem;
+}
+
+.regulament-viewer-shell {
+    background: #f4f0e8;
+    border: 1px solid #d8cfc1;
+    padding: 0.75rem;
+}
+
+.regulament-pdf-viewer {
+    display: block;
+    width: 100%;
+    height: 950px;
+    border: 0;
+    background: white;
+}
+
+.regulament-download-section {
+    padding: 1rem 0 0;
+    text-align: center;
+}
+
+.regulament-download-button {
+    display: inline-block;
+    background: #6f2b2b;
+    color: #ffffff;
+    letter-spacing: 1.6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.55rem 1.6rem;
+    transition: var(--transition);
+}
+
+.regulament-download-button:hover {
+    background: #8d2047;
+}
+
+/* ========================= */
 /* FOOTER */
 /* ========================= */
 
@@ -526,6 +596,15 @@ a {
     }
 
     .tematica-pdf-viewer {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .regulament-content-box {
+        padding: 1rem;
+    }
+
+    .regulament-pdf-viewer {
         height: 70vh;
         min-height: 500px;
     }

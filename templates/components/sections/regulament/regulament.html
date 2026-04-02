@@ -1,0 +1,27 @@
+{% load static %}
+
+<section class="regulament-section">
+    <div class="regulament-wrapper">
+        <div class="regulament-content-box">
+            <h1 class="regulament-title">REGULAMENTUL DE ORGANIZARE ȘI DESFĂȘURARE</h1>
+
+            <p class="regulament-description">
+                Regulamentul complet al concursului se găsește aici:
+            </p>
+
+            <div class="regulament-viewer-shell">
+                <iframe
+                    class="regulament-pdf-viewer"
+                    src="{% static 'pdfs/regulament-2026.pdf' %}"
+                    title="Regulament 2026 PDF"
+                ></iframe>
+            </div>
+        </div>
+
+        <div class="regulament-download-section">
+            <a class="regulament-download-button" href="{% static 'pdfs/regulament-2026.pdf' %}" target="_blank" rel="noopener">
+                DESCARCA PDF
+            </a>
+        </div>
+    </div>
+</section>
