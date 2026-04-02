@@ -38,7 +38,8 @@ body {
 
 /* INFORMATII + CALENDAR */
 .page-informatii,
-.page-calendar {
+.page-calendar,
+.page-parteneri {
     background-image: url("/static/images/5b83e9_336411a129bc423c9164d2d859a8a0be~mv2.avif");
     background-size: cover;
     background-position: center;
@@ -215,7 +216,7 @@ a {
     padding: 3rem 0;
 }
 
-/* containerul gri din mijloc */
+/* containerul alb din mijloc */
 .calendar-wrapper {
     width: min(100% - 2rem, 900px);
     margin: 0 auto;
@@ -230,6 +231,27 @@ a {
     flex-direction: column;
     gap: 2rem;
     align-items: center;
+}
+
+.parteneri-section {
+    padding: 3rem 0;
+}
+
+.parteneri-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.parteneri-images img {
+    width: 100%;
+    max-width: 650px;
+    display: block;
+    margin: 0 auto;
+}
+
+.parteneri-images img + img {
+    margin-top: -5px;
 }
 
 /* fiecare imagine */

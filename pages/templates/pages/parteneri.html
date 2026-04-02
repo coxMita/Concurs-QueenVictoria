@@ -1,1 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
 
+{% block title %}Parteneri | Queen Victoria{% endblock %}
+
+{% block body_class %}page-parteneri{% endblock %}
+
+{% block content %}
+<section class="parteneri-section">
+    <div class="parteneri-images">
+        <img src="{% static 'images/parteneri1.avif' %}" alt="Parteneri 1">
+        <img src="{% static 'images/parteneri2.avif' %}" alt="Parteneri 2">
+    </div>
+</section>
+{% endblock %}

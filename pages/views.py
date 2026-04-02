@@ -14,7 +14,7 @@ def calendar_page(request):
 
 
 def parteneri(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Parteneri"})
+    return render(request, "pages/parteneri.html", {"page_title": "Parteneri"})
 
 
 def surse(request):
