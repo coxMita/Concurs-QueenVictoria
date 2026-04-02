@@ -38,7 +38,7 @@ def tematica(request):
 
 
 def regulament(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Regulament"})
+    return render(request, "pages/regulament.html")
 
 
 def galerie(request):
