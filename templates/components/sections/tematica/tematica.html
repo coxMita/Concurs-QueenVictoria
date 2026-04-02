@@ -1,0 +1,27 @@
+{% load static %}
+
+<section class="tematica-section">
+    <div class="tematica-wrapper">
+        <div class="tematica-content-box">
+            <h1 class="tematica-title">TEMATICA 2026</h1>
+
+            <p class="tematica-description">
+                Consulta documentul direct in pagina sau descarca varianta PDF.
+            </p>
+
+            <div class="tematica-viewer-shell">
+                <iframe
+                    class="tematica-pdf-viewer"
+                    src="{% static 'pdfs/tematica-2026.pdf' %}"
+                    title="Tematica 2026 PDF"
+                ></iframe>
+            </div>
+        </div>
+
+        <div class="tematica-download-section">
+            <a class="tematica-download-button" href="{% static 'pdfs/tematica-2026.pdf' %}" target="_blank" rel="noopener">
+                DESCARCA PDF
+            </a>
+        </div>
+    </div>
+</section>
