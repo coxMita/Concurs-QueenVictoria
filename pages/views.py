@@ -20,7 +20,7 @@ def parteneri(request):
 
 
 def surse(request):
-    return render(request, "pages/blank_page.html", {"page_title": "Surse"})
+    return render(request, "pages/surse.html")
 
 
 def subiecte(request):
