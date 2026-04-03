@@ -140,8 +140,14 @@ python manage.py runserver
 
 ## Docker Setup
 
-This project now includes a Docker-based setup so you can run the full Django app with Docker 
-Compose while keeping the SQLite database and uploaded media persisted in Docker volumes.
+This project includes a production-oriented Docker setup for Linux using:
+
+- Django served by Gunicorn
+- Nginx as reverse proxy
+- SQLite persisted in a Docker volume
+- Separate Docker volumes for uploaded media and collected static files
+
+The application image uses the Linux base image `python:3.13-slim-bookworm` (Debian-based).
 
 ### 1. Create your environment file
 
@@ -156,7 +162,7 @@ docker compose up -d --build  //de fiecare data cand faci schimbari in cod
 docker compose up -d          // daca nu ai facut schimbari in cod si vrei sa pornesti siteu
 ```
 
-The app will be available at `http://localhost:8000`.
+The app will be available at `http://localhost`.
 
 ### 3. Stop the containers
 
@@ -181,10 +187,11 @@ docker compose up -d --build
 
 ### Notes
 
-- On startup, the container automatically runs `migrate` and `collectstatic`.
-- The SQLite database is stored in the `app_data` Docker volume.
-- Uploaded media files are also stored in the `app_data` Docker volume.
-- Collected static files are stored in the `staticfiles` Docker volume.
+- On startup, the `web` container automatically runs `migrate` and `collectstatic` before starting Gunicorn.
+- Nginx serves `/static/` and `/media/` directly and proxies application traffic to Django.
+- The SQLite database is stored in the `sqlite_data` Docker volume.
+- Uploaded media files are stored in the `media_data` Docker volume.
+- Collected static files are stored in the `static_data` Docker volume.
 
 ---
 
