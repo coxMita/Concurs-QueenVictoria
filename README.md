@@ -138,6 +138,56 @@ python manage.py runserver
 
 ---
 
+## Docker Setup
+
+This project now includes a Docker-based setup so you can run the full Django app with Docker 
+Compose while keeping the SQLite database and uploaded media persisted in Docker volumes.
+
+### 1. Create your environment file
+
+```bash
+cp .env.example .env  // doar prima data
+```
+
+### 2. Build and start the containers
+
+```bash
+docker compose up -d --build  //de fiecare data cand faci schimbari in cod
+docker compose up -d          // daca nu ai facut schimbari in cod si vrei sa pornesti siteu
+```
+
+The app will be available at `http://localhost:8000`.
+
+### 3. Stop the containers
+
+```bash
+docker compose down
+```
+
+### 4. Useful Docker commands
+
+Run Django management commands inside the container:
+
+```bash
+docker compose exec web python manage.py createsuperuser
+docker compose exec web python manage.py shell
+```
+
+Rebuild from scratch after dependency changes:
+
+```bash
+docker compose up -d --build
+```
+
+### Notes
+
+- On startup, the container automatically runs `migrate` and `collectstatic`.
+- The SQLite database is stored in the `app_data` Docker volume.
+- Uploaded media files are also stored in the `app_data` Docker volume.
+- Collected static files are stored in the `staticfiles` Docker volume.
+
+---
+
 ## Public Pages
 
 | Route | Description |
